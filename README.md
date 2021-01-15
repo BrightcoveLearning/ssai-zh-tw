@@ -1,1 +1,1 @@
-# ssai-zh-tw
+# ssai
