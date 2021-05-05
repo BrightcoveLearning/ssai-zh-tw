@@ -1,0 +1,534 @@
+﻿<!doctype html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="在本主題中，您將學習如何透過伺服器端廣告播放即時串流，這些廣告利用 Live SSAI 的 Player 增強功能來改善使用者體驗。">
+  
+  <title>概述：即時 SSAI 的玩家增強功能</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">  
+  <link data-react-helmet="true" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&amp;display=swap">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/prism.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/styles.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/landing-page.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/tabs.css">
+  <link rel="stylesheet" href="/assets/css/local.css">
+  <link data-react-helmet="true" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&display=swap">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/381443caa8.js" crossorigin="anonymous"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/google-analytics.js"></script>
+  <script src="/assets/js/sajari-head.js"></script>
+</head>
+
+<body class="body">
+
+<header>
+  <div class="div-header">
+    <a href="/"><span class="product-logo" style="font-family:'Balto Web','Public Sans';font-size:2em;font-weight:bold;">布萊特灣三世<sup>™</sup></span></a>
+<!-- GTranslate: https://gtranslate.io/ -->
+<select onchange="doGTranslate(this);"><option value="">選擇語言</option><option value="en|en" translate="No">English</option><option value="en|zh-TW" translate="No">繁體中文</option><option value="en|fr" translate="No">Français</option><option value="en|de" translate="No">Deutsche</option><option value="en|ja" translate="No">日本語</option><option value="en|ko" translate="No">한국어</option><option value="en|es" translate="No">Español</option></select>
+
+<script>
+/* <![CDATA[ */
+function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];var plang=location.hostname.split('.')[0];if(plang.length !=2 && plang.toLowerCase() != 'zh-cn' && plang.toLowerCase() != 'zh-tw')plang='en';location.href=location.protocol+'//'+(lang == 'en' ? '' : lang+'.')+location.hostname.replace('www.', '').replace(RegExp('^' + plang + '\\.'), '')+location.pathname+location.search;}
+/* ]]> */
+</script>
+
+Brightcove 
+
+    <span class="secondary-nav"><a href="https://supportportal.brightcove.com/s/login/?"><img src="https://support.brightcove.com/site-assets/images/site/support.png" alt="支持"/>聯繫支持</a><span style="vertical-align: top;margin-left:1em;margin-right:1em;">|</span><a href="https://status.brightcove.com/"><img src="https://support.brightcove.com/site-assets/images/site/status.png" alt="系統狀態"/>系統狀況</a></span><br/>
+    
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb arr-right">
+      
+      <li class="breadcrumb-item"><a href="/">首頁</a></li>
+      
+      
+      
+      <li class="breadcrumb-item"><a href="/live/guides/">生活</a></li>
+      
+      <li class="breadcrumb-item active" aria-current="page">概述：即時 SSAI 的玩家增強功能</li>
+    </ol>
+  </nav>
+</header>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-3 left-side-bar">
+        				<select id="site_select" class="bcls-select" style="margin-right: 1rem;">
+					<option value="">其他布萊特灣文件</option>
+					
+						
+							<option value="https://support.brightcove.com">文件首頁</option>
+						
+					
+						
+							<option value="https://audience.support.brightcove.com">布萊特灣觀眾</option>
+						
+					
+						
+							<option value="https://beacon.support.brightcove.com">布萊特灣燈塔</option>
+						
+					
+						
+							<option value="https://campaign.support.brightcove.com">布萊特灣戰役</option>
+						
+					
+						
+							<option value="https://engage.support.brightcove.com">布萊特灣參與</option>
+						
+					
+						
+							<option value="https://live.support.brightcove.com">Brightcove Live</option>
+						
+					
+						
+							<option value="https://gallery.support.brightcove.com">Brightcove 圖庫</option>
+						
+					
+						
+							<option value="https://ssai.support.brightcove.com">布萊特灣</option>
+						
+					
+						
+							<option value="https://social.support.brightcove.com">布萊特灣社會</option>
+						
+					
+						
+							<option value="https://studio.support.brightcove.com">視訊雲端工作室</option>
+						
+					
+						
+							<option value="https://player.support.brightcove.com">布萊特灣球員開發</option>
+						
+					
+						
+							<option value="https://apis.support.brightcove.com">視訊雲端平台 API</option>
+						
+					
+						
+							<option value="https://sdks.support.brightcove.com">視訊雲端裝置開發套件</option>
+						
+					
+						
+							<option value="https://integrations.support.brightcove.com">整合與 CMS 連接器</option>
+						
+					
+						
+							<option value="https://general.support.brightcove.com">視訊雲端一般資訊</option>
+						
+					
+						
+							<option value="https://zencoder.support.brightcove.com">Zencoder</option>
+						
+					
+				</select>
+						<nav class="sidenav" id="side_nav">
+
+          
+            
+            <h5><a href="/index.html">首頁</a></h5>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/getting-started/index.html">開始使<strong>用 + </strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/getting-started/video-cloud-ssai-overview.html">SAI 概要</a></li>
+                  
+                
+                  
+                    <li><a href="https://studio.support.brightcove.com/admin/configuring-server-side-ad-settings.html">設定伺服器端廣告設定</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/vod/guides/index.html">隨選視訊指南<strong> + </strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="https://player.support.brightcove.com/plugins/implementing-server-side-ads-brightcove-player.html">與布萊特灣玩家一起實施 SSAI </a></li>
+                  
+                
+                  
+                    <li><a href="https://sdks.support.brightcove.com/features/implementing-server-side-ads-native-player-sdks.html">使用原生開發套件實作 SSAI </a></li>
+                  
+                
+                  
+                    <li><a href="/vod/guides/ssai-ad-block-detection-and-auto-failover.html">：廣告區塊偵測與自動容錯移轉</a></li>
+                  
+                
+                  
+                    <li><a href="/vod/guides/video-cloud-ssai-ad-config-api.html">視訊雲端 SSAI 配置 API </a></li>
+                  
+                
+                  
+                    <li><a href="/vod/guides/ad-error-beacons-ssai.html">SSAI 的廣告錯誤信標</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/vod/references/index.html">隨選視訊參考資料<strong> + </strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/vod/references/reference.html">SAI API 參考資料</a></li>
+                  
+                
+                  
+                    <li><a href="/vod/references/ssai-api-error-reference.html">SAI API 錯誤參考</a></li>
+                  
+                
+                  
+                    <li><a href="https://player.support.brightcove.com/plugins/changelog/server-side-ads-plugin-changelog.html">伺服器端廣告外掛程式變更記錄</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/live/guides/index.html">即時參考線<strong> + </strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="https://live.support.brightcove.com/live-module/implementing-server-side-ads-live-module.html">在即時模組中實施 SSAI </a></li>
+                  
+                
+                  
+                    <li><a href="https://live.support.brightcove.com/live-api/ssai/live-api-server-side-ad-insertion-ssai.html">布萊特灣即時 API：伺服器端廣告插入 (SSAI) </a></li>
+                  
+                
+                  
+                    <li><a href="https://live.support.brightcove.com/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html">即時 API：提示點和廣告信標與 SSAI </a></li>
+                  
+                
+                  
+                    <li><a href="https://player.support.brightcove.com/advertising/client-side-preroll-with-live-ssai.html">使用即時 SSAI 的客戶端預售廣告</a></li>
+                  
+                
+                  
+                    <li><a href="/live/guides/overview-player-enhancements-live-ssai.html">概述：即時 SSAI 的玩家增強功能</a></li>
+                  
+                
+                  
+                    <li><a href="/live/guides/implementing-player-enhancements-live-ssai.html">實作即時 SSAI 的播放器增強功能</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/live/references/index.html">即時參考<strong> + </strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/live/references/reference.html">即時 API 參考</a></li>
+                  
+                
+                  
+                    <li><a href="https://live.support.brightcove.com/live-api/references/live-api-error-messages.html">即時 API：錯誤訊息</a></li>
+                  
+                
+                  
+                    <li><a href="https://live.support.brightcove.com/release-notes/live-api-release-notes.html">即時 API 發行紀錄</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/support/index.html">開發人員支援<strong> + </strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    
+                  
+                
+                  
+                    <li><a href="/support/viewing-brightcove-system-status-page.html">檢視布萊特灣系統狀態頁面</a></li>
+                  
+                
+                  
+                    <li><a href="/support/contact-sales.html">聯絡銷售人員</a></li>
+                  
+                
+                  
+                    <li><a href="/support/opening-case-with-brightcove-support.html">開啟支援案例</a></li>
+                  
+                
+              </ul>
+            
+          
+      </nav>
+    </div>
+    <div class="col-lg-7" style="background-color: white;color: #333333;margin-top: -1em;margin-bottom: -1em;padding-bottom:1em;">
+  <!-- bootstrap layout -->
+
+<p id="bc_veggie_burger_wrapper" style="display: none;"><img id="bc_veggie_burger" src="/assets/images/feather/menu.svg" alt="導覽功能表"/></p>
+
+<!-- search bar -->
+<div id="nav-search-box" style="margin-top: 1rem;"></div>
+<!-- in-page navigation for narrow screens -->
+<details class="centered-inpage-nav" id="centered_inpage_nav">
+  <summary><h6 class="toc">頁面內容</h6></summary>
+  <nav id="centered_toc"></nav>
+  <ul id="centered_in_page_toc" class="list-none"></ul>
+</details>
+<!-- open in new tab/window -->
+<a id="open_new_tab" href="#" target="_blank" style="display: none;"><img src="/assets/images/feather/external-link.svg" alt="在新分頁中開啟" style="margin-top:4em;width: 1.5em;"/></a>
+
+
+
+  
+    
+
+
+<!--
+  This content appears on:
+
+  https://live.support.brightcove.com/live-api/ssai/overview-player-enhancements-live-ssai.html
+
+  If you update in one place, you MUST update it in all!
+ -->
+
+<h1>概述：即時 SSAI 的玩家增強功能</h1>
+<article class="bcls-article">
+  <summary>在本主題中，您將學習如何透過伺服器端廣告播放即時串流，這些廣告利用 Live SSAI 的 Player 增強功能來改善使用者體驗。</summary>
+
+<section class="bcls-section">
+<h2 id="Introduction">簡介</h2>
+
+<p>伺服器端廣告可將高品質廣告拼接到您的內容中，以順暢的直播方式，讓您獲得最大的廣告收益。由於廣告是在伺服器端拼接，因此使用者無法利用廣告封鎖程式，而一個實作可跨多個平台和裝置運作。無需為每個裝置建立自訂用戶端。</p>
+
+<p>Brightcove 針對即時 SSAI 的播放器增強功能建立在伺服器端廣告上，藉由擴展使用者的體驗並擷取點閱收益。此工具組可讓您將用戶端元件新增至即時串流，包括廣告計數、廣告倒數計時器、點選廣告和隨附廣告。</p>
+
+<figure class="bcls-figure"><img class="bcls-image--no-border" alt="用戶端廣告元件" src="//learning-services-media.brightcove.com/doc-assets/node/18946-sls-overview/client-components-sls.png"/>
+<figcaption class="bcls-caption--image">用戶端廣告元件</figcaption>
+</figure>
+
+<p>此工具組也提供另一種觸發追蹤事件的方式。追蹤資料會顯示給用戶端，讓您靈活地從用戶端或伺服器觸發追蹤事件。請注意，廣告封鎖程式可能會阻止用戶端追蹤。</p>
+
+<aside class="bcls-aside bcls-aside--information">目前，此功能不支援可略過的廣告。</aside>
+<p>如需詳細資訊，請參閱下列內容：</p>
+<ul>
+  <li>
+    <a href="https://ssai.support.brightcove.com/live/guides/implementing-player-enhancements-live-ssai.html">實作即時 SSAI 的播放器增強功能</a>
+  </li>
+</ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Account_setup">帳戶設定</h2>
+
+<p>請聯絡您的客戶經理，讓您的帳戶啟用即時串流、伺服器端廣告插入 (SSAI) 和即時 SSAI 的播放器增強功能。</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Specifications">規格</h2>
+
+<p>Brightcove 的 Live SSAI 播放器增強功能可提供下列功能，改善終端使用者體驗：</p>
+
+<h3>向用戶端追蹤事件</h3>
+
+<p>追蹤資料 (包括曝光次數、四分位數、CreativeView、暫停、靜音) 都會顯示給用戶端。這可讓您靈活地從用戶端或伺服器觸發追蹤事件。客戶端特定的事件，如點擊，暫停和靜音應始終從客戶端觸發。</p>
+
+<p>您<code translate="No">ExtendedMetadata</code>的 VAST 回應可自訂並包含在用戶端。</p>
+
+<p>在串流的 DVR 視窗中傳送的廣告斷次數會遵循相同的動作。</p>
+
+<h3>提供廣告片段資訊</h3>
+
+<p>廣告突破持續時間有助於保持觀眾與直播的參與。</p>
+
+<p>廣告中斷資訊會傳遞給用戶端。休息時間內的每個廣告持續時間都會顯示給客戶。客戶提供可設定的休息時間倒數或休息時間中的廣告數量，以及每個項目的倒數計時器。</p>
+
+<h3>啟用點閱廣告</h3>
+
+<p>點選廣告可讓您將收益最大化，並調整廣告銷售量。</p>
+
+<p>來自廣告伺服器的點選網址會傳遞至播放用戶端。該視頻將是可點擊的，並在用戶點擊時發送跟踪事件。點擊後，客戶端將暫停流並在新的瀏覽器選項卡或單獨的 webview 中打開目的地。</p>
+
+<aside class="bcls-aside bcls-aside--information">由於電視不支援網頁瀏覽器，因此連線的電視無法使用點閱廣告。</aside>
+
+<h3>啟用隨附廣告</h3>
+
+<p>隨附廣告提供另一種顯示廣告內容的格式。它們通常是出現在播放器之外的文字、展示廣告或多媒體。這些廣告的好處在於它們可以在整個視頻播放過程中保持可見。</p>
+
+<aside class="bcls-aside bcls-aside--information">隨附的廣告不會出現在連線的電視上。</aside>
+</section>
+
+<section class="bcls-section">
+<h2 id="Limitations">限制</h2>
+
+<p>下列限制適用於即時 SSAI 的播放器增強功能。</p>
+
+<ul>
+  <li>目前，此功能僅適用於 ap-東南部 2 (雪梨)、ap-ne (東京)、歐洲中央 1 (法蘭克福) 和美國西部 2 (俄勒岡州) 地區。</li>
+</ul>
+</section>
+</article>
+
+<!-- complete bootstrap layout -->
+    </div>
+    <div class="col-sm-2 right-side-bar">
+      
+      <nav class="right-side-nav" id="right_side_nav">
+        <h6 class="toc">頁面內容</h6>
+        <ul id="in_page_nav" class="list-none"></ul>
+      </nav>
+      
+    </div>
+  </div>
+</div>
+
+<hr>
+<footer class="bcls-footer" role="contentinfo">  <div class="row">
+    <div class="region region-footer-top-center col-md-12">
+      <nav role="navigation" aria-labelledby="block-brightcovesupport-menu" id="block-brightcovesupport" class="footer-menu">
+
+        <h2>布萊特灣支援</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://status.brightcove.com">系統狀態</a>
+          </li>
+          <li>
+            <a href="https://supportportal.brightcove.com/s/login/?">聯絡支援</a>
+          </li>
+          <li>
+            <a href="https://support.brightcove.com/">文獻資料</a>
+          </li>
+        </ul>
+
+      </nav>
+      <nav role="navigation" aria-labelledby="block-training-menu" id="block-training" class="footer-menu">
+
+        <h2>訓練</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://studio.support.brightcove.com/training/online-training-courses.html">線上課程</a>
+          </li>
+          <li>
+            <a href="https://studio.support.brightcove.com/training/register-training.html">註冊課程</a>
+          </li>
+          <li>
+            <a href="https://university.brightcove.com/">布萊特灣大學</a>
+          </li>
+        </ul>
+
+      </nav>
+      <nav role="navigation" aria-labelledby="block-brightcove-menu" class="footer-menu">
+
+        <h2>Brightcove</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://www.brightcove.com">亮麗</a>
+          </li>
+          <li>
+            <a href="https://supportportal.brightcove.com/s/login/?">聯絡我們</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="region region-footer-bottom-center col-md-12">
+      <div class="bcls-copyright footer-menu">
+        <table>
+          <tr>
+            <td>
+              <div id="bc_copyright" class="field field--name-field-copyright-year field--type-string field--label-hidden field--item" style="float: left;"> 布萊特灣公司版權所有</div>
+            </td>
+            <td><a href="https://www.brightcove.com/en/legal/privacy">私隱</a> | 條<a href="https://www.brightcove.com/en/terms-and-conditions">款及細則</a></td>
+            <td>
+              <div class="gf-links-cols footer-menu">
+                <div class="gf-social"><a href="https://www.linkedin.com/company/16439" title="LinkedIn" newtab="newtab" class="gf-social-linkedin"><i class="fab fa-linkedin-in" style="font-size: 1.5rem;"></i></a><a href="https://twitter.com/brightcove" title="Twitter" newtab="newtab" class="gf-social-twitter"><i class="fab fa-twitter" style="font-size: 1.5rem;"></i></a><a href="https://www.facebook.com/Brightcove" title="Facebook" newtab="newtab" class="gf-social-facebook"><i class="fab fa-facebook-f" style="font-size: 1.5rem;"></i></a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+      
+  var searchBox = sajari.init({
+    mode: "search-box",
+    project: "1588255093746585379", // Set this to your project.
+    collection: "brightcove-documenation", // Set this to your collection.
+    instantPipeline: "autocomplete", // Pipeline used as you type
+    inputPlaceholder: "Search", // Input element placeholder
+    maxSuggestions: 5, // Maximum number of suggestions to show
+    attachSearchBox: document.getElementById("nav-search-box") // DOM element to attach to
+  });
+  
+    searchBox("sub", "pipeline.search-sent", function (_, query) {
+      window.location = "/search.html?q=" + encodeURIComponent(query.q);
+    });
+  
+
+</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/https-fix.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/setDate.js"></script>
+  
+  <script src="https://support.brightcove.com/site-assets/js/site/prism.js"></script>
+  
+  <script src="https://support.brightcove.com/site-assets/js/site/site.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/tabs.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/toc.js"></script>
+  <script src="/assets/js/sites_nav.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/bcls-utils.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/local-link-fix.js"></script>
+  <script src="/assets/js/feedback.js"></script>
+  
+  <script src="/assets/js/sajari-search-foot.js"></script>
+  
+  <!-- <script src="/assets/js/sajari-index.js"></script> -->
+  <style>
+    a.sj-paginator__page-number.sj-paginator__page-number--current.css-so0ov7 {
+      background-color: lightblue;
+    }
+    div.sj-tabs__tab {
+      margin-top: 3rem;
+      margin-left: .3rem;
+      border-top-left-radius: .4rem;
+      border-top-right-radius: .4rem;
+      background-color:#e8e8e8;
+    }
+
+    div.sj-tabs__tab.sj-tabs__tab--selected {
+      border-bottom-color: crimson;
+      background-color: #f8f8f8;
+    }
+
+    p.sj-results__result__description.css-p9jvyt {
+      font-size: 1rem;
+    }
+
+    .sj-result__text.css-31l7gp h3 {
+      color: navy;
+      font-size: 1.4rem;
+    }
+    </style>
+
+</body>
+
+</html>
