@@ -1,0 +1,509 @@
+---
+title: '使用非 Brightcove 播放器和 SDK 實現 SSAI' 
+description:在本主題中，您將學習如何將 Brightcove 的服務器端廣告插入 (SSAI) 與非 Brightcove 播放器和 SDK 結合使用。
+parent: Video-On-Demand Guides
+---
+ <h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="Overview">概述</h2>
+
+<p>服務器端廣告插入（SSAI）允許您將廣告嵌入到視頻中，以提供類似於電視的觀看體驗，其中瀏覽器中的廣告阻止程序無法阻止廣告。對於SSAI，您的視頻需要使用<a href="https://studio.support.brightcove.com/general/overview-dynamic-delivery.html">動態投放</a>，這是下一代攝取和交付系統，可減少您的存儲空間並動態打包媒體。</p>
+
+<p>SSAI可同時處理DRM和非DRM內容。</p>
+
+<aside class="bcls-aside bcls-aside--information">筆記：
+<ul>
+	<li>要使用SSAI，您的視頻雲帳戶需要配置為<a href="https://studio.support.brightcove.com/general/overview-dynamic-delivery.html">動態投放</a>並啟用了SSAI。請連絡您的客戶經理，開始使用此功能。</li>
+	<li>SSAI 可與隨選視訊 (VOD) 搭配使用，並支援即時播放。</li>
+	<li>有關限制的列表，請參見<a href="https://ssai.support.brightcove.com/getting-started/video-cloud-ssai-overview.html#Limitations">SSAI概述</a>文檔。</li>
+</ul>
+</aside>
+
+<p>從Video Cloud檢索到的，已通過Dynamic Delivery提取的任何視頻，都將在廣告配置中包含VMAP文件中指定的廣告。</p>
+
+<p>要使用存儲在Video Cloud中的視頻內容播放服務器端廣告，請按照以下步驟操作：</p>
+
+<ol class="bcls-tasklist">
+  <li><a href="#Defining_an_ad_tag">定義廣告代碼</a></li>
+  <li><a href="#Testing_your_ad_tag">測試廣告代碼</a></li>
+	<li><a href="#Creating_an_ad_configuration">製作廣告配置</a></li>
+  <li><a href="#Requesting_a_Video">索取影片</a></li>
+  <li><a href="#Configuring_your_player">配置播放器</a></li>
+</ol>
+<p>以下是一些其他主題：</p>
+<ul>
+  <li><a href="#Ad_tag_variables">廣告代碼變量</a></li>
+  <li><a href="#Server_side_beaconing">服務器端信標</a></li> 
+</ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Defining_an_ad_tag">定義廣告代碼</h2>
+<p>廣告代碼定義要擷取和播放的廣告。您可以使用下列其中一種格式：</p>
+<ul>
+  <li><a href="https://www.iab.com/guidelines/vast/">數字視頻廣告投放模板（VAST）</a> -定義一個廣告。</li>
+  <li><a href="https://www.iab.com/guidelines/vmap/">視頻多個廣告播放列表（VMAP）</a> -定義廣告的播放列表。VMAP文件是VAST標籤的集合。</li>
+</ul>
+<details>
+    <summary><p id="Using_the_CodePen">樣本VMAP文件</p></summary>
+    <p>這是一個VMAP文件的示例：</p>
+    <pre class="line-numbers"><code class="language-xml-doc" translate="No">&lt;vmap:VMAP xmlns:vmap=&quot;http://www.iab.net/videosuite/vmap&quot; version=&quot;1.0&quot;&gt;
+  &lt;vmap:AdBreak timeOffset=&quot;start&quot; breakType=&quot;linear&quot; breakId=&quot;preroll&quot;&gt;
+    &lt;vmap:AdSource id=&quot;preroll-ad&quot; allowMultipleAds=&quot;false&quot; followRedirects=&quot;true&quot;&gt;
+      &lt;vmap:VASTAdData&gt;
+        &lt;VAST version=&quot;3.0&quot;&gt;
+          &lt;Ad id=&quot;1&quot;&gt;
+            &lt;InLine&gt;
+              &lt;AdSystem version=&quot;1.0&quot;&gt;Test Ad Server&lt;/AdSystem&gt;
+              &lt;AdTitle&gt;
+                &lt;![CDATA[ Portals ]]&gt;
+              &lt;/AdTitle&gt;
+              &lt;Description&gt;
+                &lt;![CDATA[ Demo ad number 6 ]]&gt;
+              &lt;/Description&gt;
+              &lt;Error&gt;
+                &lt;![CDATA[ ]]&gt;
+              &lt;/Error&gt;
+              &lt;Creatives&gt;
+                &lt;Creative&gt;
+                  &lt;Linear&gt;
+                    &lt;Duration&gt;00:00:05&lt;/Duration&gt;
+                    &lt;TrackingEvents/&gt;
+                    &lt;AdParameters&gt;
+                      &lt;![CDATA[ &lt;xml&gt;&lt;/xml&gt; ]]&gt;
+                    &lt;/AdParameters&gt;
+                    &lt;VideoClicks/&gt;
+                    &lt;MediaFiles&gt;
+                      &lt;MediaFile type=&quot;video/mp4&quot; width=&quot;1280&quot; height=&quot;720&quot; delivery=&quot;progressive&quot; id=&quot;2&quot; bitrate=&quot;4316&quot; minBitrate=&quot;320&quot; maxBitrate=&quot;320&quot; scalable=&quot;true&quot; maintainAspectRatio=&quot;true&quot;&gt;
+                        &lt;![CDATA[ https://general.support.brightcove.com/assets/ads/bc-ads/bcls-ad-6-5seconds.mp4 ]]&gt;
+                      &lt;/MediaFile&gt;
+                    &lt;/MediaFiles&gt;
+                  &lt;/Linear&gt;
+                &lt;/Creative&gt;
+              &lt;/Creatives&gt;
+              &lt;Extensions&gt;
+                &lt;Extension&gt;
+                  &lt;xml&gt;data&lt;/xml&gt;
+                &lt;/Extension&gt;
+              &lt;/Extensions&gt;
+            &lt;/InLine&gt;
+          &lt;/Ad&gt;
+        &lt;/VAST&gt;
+      &lt;/vmap:VASTAdData&gt;
+    &lt;/vmap:AdSource&gt;
+  &lt;/vmap:AdBreak&gt;
+  &lt;vmap:AdBreak timeOffset=&quot;00:00:05&quot; breakType=&quot;linear&quot; breakId=&quot;midroll&quot;&gt;
+    &lt;vmap:AdSource id=&quot;midroll-ad&quot; allowMultipleAds=&quot;false&quot; followRedirects=&quot;true&quot;&gt;
+      &lt;vmap:VASTAdData&gt;
+        &lt;VAST version=&quot;3.0&quot;&gt;
+          &lt;Ad id=&quot;2&quot;&gt;
+            &lt;InLine&gt;
+              &lt;AdSystem version=&quot;1.0&quot;&gt;Test Ad Server&lt;/AdSystem&gt;
+              &lt;AdTitle&gt;
+                &lt;![CDATA[ Marketing ]]&gt;
+              &lt;/AdTitle&gt;
+              &lt;Description&gt;
+                &lt;![CDATA[ Demo ad number 4 ]]&gt;
+              &lt;/Description&gt;
+              &lt;Error&gt;
+                &lt;![CDATA[ ]]&gt;
+              &lt;/Error&gt;
+              &lt;Creatives&gt;
+                &lt;Creative&gt;
+                  &lt;Linear skipoffset=&quot;00:00:05&quot;&gt;
+                    &lt;Duration&gt;00:00:12&lt;/Duration&gt;
+                    &lt;TrackingEvents/&gt;
+                    &lt;AdParameters&gt;
+                      &lt;![CDATA[ &lt;xml&gt;&lt;/xml&gt; ]]&gt;
+                    &lt;/AdParameters&gt;
+                    &lt;VideoClicks/&gt;
+                    &lt;MediaFiles&gt;
+                      &lt;MediaFile type=&quot;video/mp4&quot; width=&quot;1280&quot; height=&quot;720&quot; delivery=&quot;progressive&quot; id=&quot;3&quot; bitrate=&quot;3026&quot; minBitrate=&quot;320&quot; maxBitrate=&quot;320&quot; scalable=&quot;true&quot; maintainAspectRatio=&quot;true&quot;&gt;
+                        &lt;![CDATA[ https://general.support.brightcove.com/assets/ads/bc-ads/bcls-ad-4-12seconds.mp4 ]]&gt;
+                      &lt;/MediaFile&gt;
+                    &lt;/MediaFiles&gt;
+                  &lt;/Linear&gt;
+                &lt;/Creative&gt;
+              &lt;/Creatives&gt;
+              &lt;Extensions&gt;
+                &lt;Extension&gt;
+                  &lt;xml&gt;data&lt;/xml&gt;
+                &lt;/Extension&gt;
+              &lt;/Extensions&gt;
+            &lt;/InLine&gt;
+          &lt;/Ad&gt;
+        &lt;/VAST&gt;
+      &lt;/vmap:VASTAdData&gt;
+    &lt;/vmap:AdSource&gt;
+  &lt;/vmap:AdBreak&gt;
+  &lt;vmap:AdBreak timeOffset=&quot;end&quot; breakType=&quot;linear&quot; breakId=&quot;postroll&quot;&gt;
+    &lt;vmap:AdSource id=&quot;postroll-ad&quot; allowMultipleAds=&quot;false&quot; followRedirects=&quot;true&quot;&gt;
+      &lt;vmap:VASTAdData&gt;
+        &lt;VAST version=&quot;3.0&quot;&gt;
+          &lt;Ad id=&quot;3&quot;&gt;
+            &lt;InLine&gt;
+              &lt;AdSystem version=&quot;1.0&quot;&gt;Test Ad Server&lt;/AdSystem&gt;
+              &lt;AdTitle&gt;
+                &lt;![CDATA[ Brand ]]&gt;
+              &lt;/AdTitle&gt;
+              &lt;Description&gt;
+                &lt;![CDATA[ Demo ad number 1 ]]&gt;
+              &lt;/Description&gt;
+              &lt;Error&gt;
+                &lt;![CDATA[ ]]&gt;
+              &lt;/Error&gt;
+              &lt;Creatives&gt;
+                &lt;Creative&gt;
+                  &lt;Linear&gt;
+                    &lt;Duration&gt;00:00:08&lt;/Duration&gt;
+                    &lt;TrackingEvents/&gt;
+                    &lt;AdParameters&gt;
+                      &lt;![CDATA[ &lt;xml&gt;&lt;/xml&gt; ]]&gt;
+                    &lt;/AdParameters&gt;
+                    &lt;VideoClicks/&gt;
+                    &lt;MediaFiles&gt;
+                      &lt;MediaFile type=&quot;video/mp4&quot; width=&quot;1280&quot; height=&quot;720&quot; delivery=&quot;progressive&quot; id=&quot;4&quot; bitrate=&quot;2115&quot; minBitrate=&quot;320&quot; maxBitrate=&quot;320&quot; scalable=&quot;true&quot; maintainAspectRatio=&quot;true&quot;&gt;
+                        &lt;![CDATA[ https://general.support.brightcove.com/assets/ads/bc-ads/bcls-ad-1-8seconds.mp4 ]]&gt;
+                      &lt;/MediaFile&gt;
+                    &lt;/MediaFiles&gt;
+                  &lt;/Linear&gt;
+                &lt;/Creative&gt;
+              &lt;/Creatives&gt;
+              &lt;Extensions&gt;
+                &lt;Extension&gt;
+                  &lt;xml&gt;data&lt;/xml&gt;
+                &lt;/Extension&gt;
+              &lt;/Extensions&gt;
+            &lt;/InLine&gt;
+          &lt;/Ad&gt;
+        &lt;/VAST&gt;
+      &lt;/vmap:VASTAdData&gt;
+    &lt;/vmap:AdSource&gt;
+  &lt;/vmap:AdBreak&gt;
+&lt;/vmap:VMAP&gt;</code></pre>
+</details>
+</section>
+
+<section class="bcls-section">
+<h2 id="Testing_your_ad_tag">測試廣告代碼</h2>
+<p>最好是確認廣告代碼是否有效，並如預期般運作。這將有助於在實施過程中調試其他問題。</p>
+<ul>
+  <li><a href="https://developers.google.com/interactive-media-ads/docs/sdks/html5/client-side/vastinspector">Google的Video Suite檢查器</a></li>
+</ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Creating_an_ad_configuration">建立廣告組態</h2>
+<p>廣告配置定義了SSAI播放的各個方面，包括指向您的視頻多個廣告播放列表（VMAP）文件的URL，信標和其他配置。</p>
+
+<h3>使用Video Cloud Studio</h3>
+<p>要使用Studio創建廣告配置，請參見<a href="https://studio.support.brightcove.com/admin/configuring-server-side-ad-settings.html">配置服務器端廣告設置</a>文檔。</p>
+
+<h3>使用SSAI廣告配置API</h3>
+<p>要使用API創建廣告配置，請參見<a href="/vod/guides/video-cloud-ssai-ad-config-api.html">視頻雲SSAI廣告配置API</a>文檔。</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Requesting_a_Video">索取影片</h2>
+<p>接下來，通過服務器端廣告獲取視頻數據。為此，請將廣告配置ID作為URL參數附加到Playback API視頻請求中。</p>
+<ul>
+  <li>有關詳細信息，請參見<a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html#Video_request_with_SSAI">使用SSAI的視頻請求</a>概述部分：播放API文檔。</li>
+</ul>
+<details>
+    <summary><p id="Using_the_CodePen">樣本播放API響應</p></summary>
+    <p>這是一個Playback API響應的示例：</p>
+    <pre class="line-numbers"><code class="language-xml-doc" translate="No">{
+  &quot;poster&quot;: &quot;https://cf-images.eu-west-1.prod.boltdns.net/v1/jit/1752604059001/dca41ae8-d8f5-48a6-9853-564764d60b84/main/1280x720/12s64ms/match/image.jpg&quot;,
+  &quot;thumbnail&quot;: &quot;https://cf-images.eu-west-1.prod.boltdns.net/v1/jit/1752604059001/dca41ae8-d8f5-48a6-9853-564764d60b84/main/160x90/12s64ms/match/image.jpg&quot;,
+  &quot;poster_sources&quot;: [{
+    &quot;src&quot;: &quot;https://cf-images.eu-west-1.prod.boltdns.net/v1/jit/1752604059001/dca41ae8-d8f5-48a6-9853-564764d60b84/main/1280x720/12s64ms/match/image.jpg&quot;
+  }],
+  &quot;thumbnail_sources&quot;: [{
+    &quot;src&quot;: &quot;https://cf-images.eu-west-1.prod.boltdns.net/v1/jit/1752604059001/dca41ae8-d8f5-48a6-9853-564764d60b84/main/160x90/12s64ms/match/image.jpg&quot;
+  }],
+  &quot;description&quot;: null,
+  &quot;tags&quot;: [],
+  &quot;cue_points&quot;: [],
+  &quot;custom_fields&quot;: {},
+  &quot;account_id&quot;: &quot;1752604059001&quot;,
+  &quot;sources&quot;: [{
+    &quot;ext_x_version&quot;: &quot;4&quot;,
+    &quot;src&quot;: &quot;http://ssaimanifest.prod.boltdns.net/playback/once/v1/hls/v4/clear/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/master.m3u8?bc_token=NWZmNGQ4ZDlfZjJkMjdkY2ZlZjNhODljNzVmNzlhZTkxZTM0YTBhMmQ5NzI3ZDVmMmZmODIwYjcyMjM0NzMyZDIyZDQ3NTUwZQ%3D%3D&quot;,
+    &quot;type&quot;: &quot;application/x-mpegURL&quot;,
+    &quot;vmap&quot;: &quot;http://ssaimanifest.prod.boltdns.net/playback/once/v1/vmap/hls/v4/clear/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/content.vmap?bc_token=NWZmNGQ4ZDlfOTY5ZjIzMzAzOTAxNzZhZjVlYjllOGJmMzA1YjI4MDE3OTM4NmEyZmRkYTc1OGNkZjM5NTAxMWUxYTE5ZGU5Yg%3D%3D&quot;
+  }, {
+    &quot;ext_x_version&quot;: &quot;4&quot;,
+    &quot;src&quot;: &quot;https://ssaimanifest.prod.boltdns.net/playback/once/v1/hls/v4/clear/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/master.m3u8?bc_token=NWZmNGQ4ZDlfZjJkMjdkY2ZlZjNhODljNzVmNzlhZTkxZTM0YTBhMmQ5NzI3ZDVmMmZmODIwYjcyMjM0NzMyZDIyZDQ3NTUwZQ%3D%3D&quot;,
+    &quot;type&quot;: &quot;application/x-mpegURL&quot;,
+    &quot;vmap&quot;: &quot;https://ssaimanifest.prod.boltdns.net/playback/once/v1/vmap/hls/v4/clear/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/content.vmap?bc_token=NWZmNGQ4ZDlfOTY5ZjIzMzAzOTAxNzZhZjVlYjllOGJmMzA1YjI4MDE3OTM4NmEyZmRkYTc1OGNkZjM5NTAxMWUxYTE5ZGU5Yg%3D%3D&quot;
+  }, {
+    &quot;codecs&quot;: &quot;avc1,mp4a&quot;,
+    &quot;ext_x_version&quot;: &quot;7&quot;,
+    &quot;src&quot;: &quot;http://ssaimanifest.prod.boltdns.net/playback/once/v1/hls/v7/clear/codec_avc1_mp4a/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/master.m3u8?bc_token=NWZmNGQ4ZDlfNjVhYTczMDhmZWY5OWE5Zjk3OGJmNTczYjYyYWFmMGI3OWQxZTYyODc5YTk3NzJiOWY3MDk0NmZjOTVmZjVhMA%3D%3D&quot;,
+    &quot;type&quot;: &quot;application/x-mpegURL&quot;,
+    &quot;vmap&quot;: &quot;http://ssaimanifest.prod.boltdns.net/playback/once/v1/vmap/hls/v7/clear/codec_avc1_mp4a/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/content.vmap?bc_token=NWZmNGQ4ZDlfNzk5NzY0NThhOTlhZWY0OWI3NDc0MDQxMTQxNWMwZjVkYTFlYzdiZTRkMWE2ZmJjODRjODRkY2JlYjZjZWI1Mg%3D%3D&quot;
+  }, {
+    &quot;codecs&quot;: &quot;avc1,mp4a&quot;,
+    &quot;ext_x_version&quot;: &quot;7&quot;,
+    &quot;src&quot;: &quot;https://ssaimanifest.prod.boltdns.net/playback/once/v1/hls/v7/clear/codec_avc1_mp4a/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/master.m3u8?bc_token=NWZmNGQ4ZDlfNjVhYTczMDhmZWY5OWE5Zjk3OGJmNTczYjYyYWFmMGI3OWQxZTYyODc5YTk3NzJiOWY3MDk0NmZjOTVmZjVhMA%3D%3D&quot;,
+    &quot;type&quot;: &quot;application/x-mpegURL&quot;,
+    &quot;vmap&quot;: &quot;https://ssaimanifest.prod.boltdns.net/playback/once/v1/vmap/hls/v7/clear/codec_avc1_mp4a/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/content.vmap?bc_token=NWZmNGQ4ZDlfNzk5NzY0NThhOTlhZWY0OWI3NDc0MDQxMTQxNWMwZjVkYTFlYzdiZTRkMWE2ZmJjODRjODRkY2JlYjZjZWI1Mg%3D%3D&quot;
+  }, {
+    &quot;profiles&quot;: &quot;urn:mpeg:dash:profile:isoff-live:2011&quot;,
+    &quot;src&quot;: &quot;http://ssaimanifest.prod.boltdns.net/playback/once/v1/dash/live-timeline/clear/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/manifest.mpd?bc_token=NWZmNGQ4ZDlfN2Y5MzJhZmYxYjM5ZTRiZTIwNmFlNzg1NWIyOTY3NjlhMTMwZTllMGI2YzEwZmFlMTk2ZmEzODAwMDVlMWMxYw%3D%3D&quot;,
+    &quot;type&quot;: &quot;application/dash+xml&quot;,
+    &quot;vmap&quot;: &quot;http://ssaimanifest.prod.boltdns.net/playback/once/v1/vmap/dash/live-timeline/clear/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/content.vmap?bc_token=NWZmNGQ4ZDlfY2JkMWY4NmY1ZDI2NDQ0NGY1YzAzYzMxNGY5NTJjY2MzYjljMTVjOGM3N2ZhZWRkNTU3YjgxYzkyMDQwOGIzYQ%3D%3D&quot;
+  }, {
+    &quot;profiles&quot;: &quot;urn:mpeg:dash:profile:isoff-live:2011&quot;,
+    &quot;src&quot;: &quot;https://ssaimanifest.prod.boltdns.net/playback/once/v1/dash/live-timeline/clear/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/manifest.mpd?bc_token=NWZmNGQ4ZDlfN2Y5MzJhZmYxYjM5ZTRiZTIwNmFlNzg1NWIyOTY3NjlhMTMwZTllMGI2YzEwZmFlMTk2ZmEzODAwMDVlMWMxYw%3D%3D&quot;,
+    &quot;type&quot;: &quot;application/dash+xml&quot;,
+    &quot;vmap&quot;: &quot;https://ssaimanifest.prod.boltdns.net/playback/once/v1/vmap/dash/live-timeline/clear/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/content.vmap?bc_token=NWZmNGQ4ZDlfY2JkMWY4NmY1ZDI2NDQ0NGY1YzAzYzMxNGY5NTJjY2MzYjljMTVjOGM3N2ZhZWRkNTU3YjgxYzkyMDQwOGIzYQ%3D%3D&quot;
+  }, {
+    &quot;codecs&quot;: &quot;avc1,mp4a&quot;,
+    &quot;profiles&quot;: &quot;urn:mpeg:dash:profile:isoff-live:2011&quot;,
+    &quot;src&quot;: &quot;http://ssaimanifest.prod.boltdns.net/playback/once/v1/dash/live-timeline/clear/codec_avc1_mp4a/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/manifest.mpd?bc_token=NWZmNGQ4ZDlfNGY5Y2NlNjUyMjNiN2RjYTUyOTYyN2EwZjMzNmNiNjA3NzY4OTFjM2MxMDVhYzkzYzY0NzE5NDc4ZTI4MDc2ZQ%3D%3D&quot;,
+    &quot;type&quot;: &quot;application/dash+xml&quot;,
+    &quot;vmap&quot;: &quot;http://ssaimanifest.prod.boltdns.net/playback/once/v1/vmap/dash/live-timeline/clear/codec_avc1_mp4a/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/content.vmap?bc_token=NWZmNGQ4ZDlfZWUxN2FkNjUxZTZmMTZkMzJmM2VhOTY0MTY1NTU1ZmJkNzhiMjgxMTg1ZmI1ZGY1ODcwYmVjOWUzM2E2NGVjMw%3D%3D&quot;
+  }, {
+    &quot;codecs&quot;: &quot;avc1,mp4a&quot;,
+    &quot;profiles&quot;: &quot;urn:mpeg:dash:profile:isoff-live:2011&quot;,
+    &quot;src&quot;: &quot;https://ssaimanifest.prod.boltdns.net/playback/once/v1/dash/live-timeline/clear/codec_avc1_mp4a/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/manifest.mpd?bc_token=NWZmNGQ4ZDlfNGY5Y2NlNjUyMjNiN2RjYTUyOTYyN2EwZjMzNmNiNjA3NzY4OTFjM2MxMDVhYzkzYzY0NzE5NDc4ZTI4MDc2ZQ%3D%3D&quot;,
+    &quot;type&quot;: &quot;application/dash+xml&quot;,
+    &quot;vmap&quot;: &quot;https://ssaimanifest.prod.boltdns.net/playback/once/v1/vmap/dash/live-timeline/clear/codec_avc1_mp4a/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/content.vmap?bc_token=NWZmNGQ4ZDlfZWUxN2FkNjUxZTZmMTZkMzJmM2VhOTY0MTY1NTU1ZmJkNzhiMjgxMTg1ZmI1ZGY1ODcwYmVjOWUzM2E2NGVjMw%3D%3D&quot;
+  }],
+  &quot;name&quot;: &quot;Mt Audubon&quot;,
+  &quot;reference_id&quot;: null,
+  &quot;long_description&quot;: null,
+  &quot;duration&quot;: 24128,
+  &quot;economics&quot;: &quot;AD_SUPPORTED&quot;,
+  &quot;text_tracks&quot;: [],
+  &quot;published_at&quot;: &quot;2020-05-14T18:51:30.532Z&quot;,
+  &quot;created_at&quot;: &quot;2020-05-14T18:51:30.502Z&quot;,
+  &quot;updated_at&quot;: &quot;2020-05-14T19:46:00.320Z&quot;,
+  &quot;offline_enabled&quot;: false,
+  &quot;link&quot;: null,
+  &quot;id&quot;: &quot;6156696074001&quot;,
+  &quot;ad_keys&quot;: null
+}</code></pre>
+</details>
+</section>
+
+<section class="bcls-section">
+<h2 id="Configuring_your_player">配置播放器</h2>
+<p>在Playback API響應（上面的部分）中，找到<code translate="No">Sources</code>對象，複製其中之一<code translate="No">vmap</code> URL並將其粘貼到瀏覽器搜索欄中以查看VMAP響應。</p>
+<details>
+    <summary><p id="Using_the_CodePen">樣本VMAP響應</p></summary>
+    <p>這是vmap響應的示例：</p>
+    <pre class="line-numbers"><code class="language-xml-doc" translate="No">&lt;vmap:VMAP xmlns:bc=&quot;bc&quot; xmlns:vmap=&quot;http://www.iab.net/vmap-1.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; version=&quot;1.0&quot;&gt;
+  &lt;vmap:Extensions&gt;
+    &lt;bc:Brightcove ttl=&quot;3600&quot; <span class="bcls-highlight">contenturi=&quot;https://ssaimanifest.prod.boltdns.net/us-east-1/playback/once/v1/hls/v4/clear/1752604059001/d6190656-2095-4ff3-8afe-1a0b60d67ed2/dca41ae8-d8f5-48a6-9853-564764d60b84/6830b2e4-3298-439d-beef-e04abef9f23c/content.m3u8?bc_token=NWZkMTE5NTlfZWQxNDAzNDRkNTAxNDRlMWEwODU3MTI1MzY2YjAyZWQ5YzlmZTkzY2UwMjM5NTM1MmI2NGRjZDNhNjE2ZDhlOA%3D%3D&quot;</span>
+    <span class="bcls-highlight">contentlength=&quot;24.0574&quot;</span> <span class="bcls-highlight">payloadlength=&quot;50.1835&quot;</span> contenttype=&quot;application/x-mpegURL&quot; /&gt;
+    &lt;bc:thumbnailURL type=&quot;thumbnail&quot; width=&quot;480&quot; height=&quot;270&quot; bandwidth=&quot;0&quot;&gt;https://ssai.playback.us-east-1.prod.deploys.brightcove.com/v1/thumbnail/1752604059001/dca41ae8-d8f5-48a6-9853-564764d60b84/low-res/6830b2e4-3298-439d-beef-e04abef9f23c/thumbnail.vtt?bc_token=NWZkMTE5NTlfMmVmODIzZDJjMGZkMDBjZjY1YWIxNDQ4Y2YyZmUxYTExNzg5YmIxZDI5ZTdkMjgyODBmMDBmYTViMTE2Yzc0MQ%3D%3D&lt;/bc:thumbnailURL&gt;
+  &lt;/vmap:Extensions&gt;
+  &lt;vmap:AdBreak breakType=&quot;linear&quot; breakId=&quot;PreRoll_0_0&quot; <span class="bcls-highlight">timeOffset=&quot;start&quot;</span>&gt;
+    &lt;vmap:AdSource allowMultipleAds=&quot;true&quot; followRedirects=&quot;true&quot; id=&quot;0&quot;&gt;
+      &lt;vmap:VASTData&gt;
+        &lt;VAST xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+          &lt;Ad id=&quot;1&quot;&gt;
+            &lt;InLine&gt;
+              &lt;AdSystem&gt;Test Ad Server&lt;/AdSystem&gt;
+              &lt;AdTitle&gt;Portals&lt;/AdTitle&gt;
+              &lt;Description&gt;Demo ad number 6&lt;/Description&gt;
+              &lt;Error&gt;&lt;/Error&gt;
+              &lt;Creatives&gt;
+                &lt;Creative&gt;
+                  &lt;Linear&gt;
+                    &lt;CreativeExtensions&gt;
+                      &lt;CreativeExtension&gt;
+                        &lt;BrightcoveForeignKey&gt;1&lt;/BrightcoveForeignKey&gt;
+                      &lt;/CreativeExtension&gt;
+                    &lt;/CreativeExtensions&gt;
+                    <span class="bcls-highlight">&lt;Duration&gt;00:00:05.9392&lt;/Duration&gt;</span>
+                    &lt;AdParameters&gt;
+                      &lt;xml&gt;&lt;/xml&gt;
+                    &lt;/AdParameters&gt;
+                    &lt;VideoClicks/&gt;
+                  &lt;/Linear&gt;
+                &lt;/Creative&gt;
+              &lt;/Creatives&gt;
+              &lt;Extensions&gt;
+                &lt;Extension&gt;
+                  &lt;xml&gt;data&lt;/xml&gt;
+                &lt;/Extension&gt;
+              &lt;/Extensions&gt;
+            &lt;/InLine&gt;
+          &lt;/Ad&gt;
+        &lt;/VAST&gt;
+      &lt;/vmap:VASTData&gt;
+    &lt;/vmap:AdSource&gt;
+  &lt;/vmap:AdBreak&gt;
+  &lt;vmap:AdBreak breakType=&quot;linear&quot; breakId=&quot;MidRoll_5_0&quot; <span class="bcls-highlight">timeOffset=&quot;00:00:04.8381&quot;</span>&gt;
+    &lt;vmap:AdSource allowMultipleAds=&quot;true&quot; followRedirects=&quot;true&quot; id=&quot;1&quot;&gt;
+      &lt;vmap:VASTData&gt;
+        &lt;VAST xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+          &lt;Ad id=&quot;2&quot;&gt;
+            &lt;InLine&gt;
+              &lt;AdSystem&gt;Test Ad Server&lt;/AdSystem&gt;
+              &lt;AdTitle&gt;Marketing&lt;/AdTitle&gt;
+              &lt;Description&gt;Demo ad number 4&lt;/Description&gt;
+              &lt;Error&gt;&lt;/Error&gt;
+              &lt;Creatives&gt;
+                &lt;Creative&gt;
+                  &lt;Linear skipoffset=&quot;00:00:05&quot;&gt;
+                    &lt;CreativeExtensions&gt;
+                      &lt;CreativeExtension&gt;
+                        &lt;BrightcoveForeignKey&gt;2&lt;/BrightcoveForeignKey&gt;
+                      &lt;/CreativeExtension&gt;
+                    &lt;/CreativeExtensions&gt;
+                    <span class="bcls-highlight">&lt;Duration&gt;00:00:12.1788&lt;/Duration&gt;</span>
+                    &lt;AdParameters&gt;
+                      &lt;xml&gt;&lt;/xml&gt;
+                    &lt;/AdParameters&gt;
+                    &lt;VideoClicks/&gt;
+                  &lt;/Linear&gt;
+                &lt;/Creative&gt;
+              &lt;/Creatives&gt;
+              &lt;Extensions&gt;
+                &lt;Extension&gt;
+                  &lt;xml&gt;data&lt;/xml&gt;
+                &lt;/Extension&gt;
+              &lt;/Extensions&gt;
+            &lt;/InLine&gt;
+          &lt;/Ad&gt;
+        &lt;/VAST&gt;
+      &lt;/vmap:VASTData&gt;
+    &lt;/vmap:AdSource&gt;
+  &lt;/vmap:AdBreak&gt;
+  &lt;vmap:AdBreak breakType=&quot;linear&quot; breakId=&quot;PostRoll_24_0&quot; <span class="bcls-highlight">timeOffset=&quot;end&quot;</span>&gt;
+    &lt;vmap:AdSource allowMultipleAds=&quot;true&quot; followRedirects=&quot;true&quot; id=&quot;2&quot;&gt;
+      &lt;vmap:VASTData&gt;
+        &lt;VAST xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+          &lt;Ad id=&quot;3&quot;&gt;
+            &lt;InLine&gt;
+              &lt;AdSystem&gt;Test Ad Server&lt;/AdSystem&gt;
+              &lt;AdTitle&gt;Brand&lt;/AdTitle&gt;
+              &lt;Description&gt;Demo ad number 1&lt;/Description&gt;
+              &lt;Error&gt;&lt;/Error&gt;
+              &lt;Creatives&gt;
+                &lt;Creative&gt;
+                  &lt;Linear&gt;
+                    &lt;CreativeExtensions&gt;
+                      &lt;CreativeExtension&gt;
+                        &lt;BrightcoveForeignKey&gt;3&lt;/BrightcoveForeignKey&gt;
+                      &lt;/CreativeExtension&gt;
+                    &lt;/CreativeExtensions&gt;
+                    <span class="bcls-highlight">&lt;Duration&gt;00:00:08.0080&lt;/Duration&gt;</span>
+                    &lt;AdParameters&gt;
+                      &lt;xml&gt;&lt;/xml&gt;
+                    &lt;/AdParameters&gt;
+                    &lt;VideoClicks/&gt;
+                  &lt;/Linear&gt;
+                &lt;/Creative&gt;
+              &lt;/Creatives&gt;
+              &lt;Extensions&gt;
+                &lt;Extension&gt;
+                  &lt;xml&gt;data&lt;/xml&gt;
+                &lt;/Extension&gt;
+              &lt;/Extensions&gt;
+            &lt;/InLine&gt;
+          &lt;/Ad&gt;
+        &lt;/VAST&gt;
+      &lt;/vmap:VASTData&gt;
+    &lt;/vmap:AdSource&gt;
+  &lt;/vmap:AdBreak&gt;
+&lt;/vmap:VMAP&gt;</code></pre>
+</details>
+
+<h3>VMAP擴展</h3>
+<p>在VMAP響應中，Brightcove添加了一個<code translate="No">&lt;vmap:Extensions&gt;</code>部分。</p>
+<p>以下屬性與<code translate="No">&lt;bc:Brightcove&gt;</code>擴展部分中的標籤：</p>
+<table class="bcls-table">
+    <caption class="bcls-caption--table">VMAP響應字段屬性</caption>
+    <thead class="bcls-table__head">
+        <tr>
+            <th>屬性</th>
+            <th>描述</th>
+        </tr>
+    </thead>
+    <tbody class="bcls-table__body">
+        <tr>
+            <td><code translate="No">contenturi</code></td>
+            <td>對特定於會話的清單的引用-這是您應該加載到播放器中的內容</td>
+        </tr>
+        <tr>
+            <td><code translate="No">contentlength</code></td>
+            <td>內容視頻的時長</td>
+        </tr>
+        <tr>
+            <td><code translate="No">payloadlength</code></td>
+            <td>總縫合流的持續時間</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>廣告中斷</h3>
+<p>以下屬性與每個廣告塊相關聯：</p>
+<table class="bcls-table">
+    <caption class="bcls-caption--table">VMAP響應字段</caption>
+    <thead class="bcls-table__head">
+        <tr>
+            <th>屬性</th>
+            <th>描述</th>
+        </tr>
+    </thead>
+    <tbody class="bcls-table__body">
+        <tr>
+            <td><code translate="No">timeoffset</code></td>
+            <td>這可以是<code translate="No">start</code>，<code translate="No">end</code>，或需要計算的特定時間。如果廣告連播具有多個廣告，則它們可以具有相同的偏移量，因為它們是在相同的“內容時間"插入的。</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>以下標記與每個廣告塊相關聯：</p>
+<table class="bcls-table">
+    <caption class="bcls-caption--table">VMAP響應字段</caption>
+    <thead class="bcls-table__head">
+        <tr>
+            <th>標籤</th>
+            <th>描述</th>
+        </tr>
+    </thead>
+    <tbody class="bcls-table__body">
+        <tr>
+            <td><code translate="No">Duration</code></td>
+            <td>這標識了要插入的廣告的持續時間。</td>
+        </tr>
+    </tbody>
+</table>
+<h4>注意事項</h4>
+<p>建立廣告策略時，請注意以下幾點：</p>
+<ul>
+  <li>在<code translate="No">start</code>抵消，您可能有3個持續時間的廣告<code translate="No">00:00:16.0000</code>，因此預卷廣告連播總長度為48秒。這意味著實際內容的開始時間將是實際縫合清單的48秒標記。</li>
+  <li>在各種廣告元素中，最相關的可能是<code translate="No">ClickThrough</code>因為它標識了要啟用的URL鏈接。請注意，任何關聯<code translate="No">ClickTracking</code>當用戶單擊鏈接時，應該給元素添加信標。</li>
+</ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Ad_tag_variables">廣告代碼變量</h2>
+<p>廣告代碼變量可讓您定位廣告。</p>
+<p>如果您的廣告配置包含<code translate="No">{% raw %}{{url.*}}{% endraw %}</code>宏，在請求VMAP時應將它們附加為查詢參數。</p>
+<p>例如，像</p>
+<pre><code class="language-html" translate="No">{% raw %}{{url.deviceId}}{% endraw %}</code></pre>
+<p> 應該附加為查詢參數，例如</p>
+<pre><code class="language-html" translate="No">?deviceId=xyz</code></pre>
+<p>有關詳細信息，請參見<a href="https://ssai.support.brightcove.com/vod/guides/video-cloud-ssai-ad-config-api.html#Ad_variables">視頻雲SSAI廣告配置API</a>文檔。</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Server_side_beaconing">服務器端信標</h2>
+<p>您可以將信標配置為觸發服務器端展示和四分位/完整信標。</p>
+<ul>
+  <li>使用SSAI時，VAST廣告錯誤信標有助於主動發現和解決廣告工作流程中的問題。有關詳細信息，請參見<a href="https://ssai.support.brightcove.com/vod/guides/ad-error-beacons-ssai.html">SSAI的廣告錯誤信標</a>文檔。</li>
+  <li>也可以使用VAST標准信標。有關詳細信息，請參見<a href="https://www.iab.com/guidelines/vast/">數字視頻廣告投放模板（VAST）</a>文檔。</li>
+</ul>
+</section>
+
+</article>
