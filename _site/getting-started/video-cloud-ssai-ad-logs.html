@@ -1,0 +1,1172 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW"> 
+    <head>
+        <title>SSAI 廣告跟踪日誌</title>
+        
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="SSAI 廣告跟踪日誌是一項新功能，旨在提供有關 SSAI 廣告運作方式的詳細信息。此功能適用於 VOD 和直播。">
+        
+        <!-- Google Font -->
+        <link href="/assets/s-site-assets-stylesheets/fonts/poppins.css" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/s-site-assets-stylesheets/fonts/articulat-site.css">
+        <link href="/assets/s-site-assets-stylesheets/fonts/source-code-pro.css" rel="stylesheet">
+        
+        <!-- FontAwesome JS-->
+        
+        <script src="https://kit.fontawesome.com/d67c74a882.js" crossorigin="anonymous"></script>  
+        
+        <!-- Plugins CSS -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+        <link rel="stylesheet" href="/assets/s-site-assets-template-stylesheets/plugins/simplelightbox/simple-lightbox.min.css">
+
+        <!-- Theme CSS -->  
+        <link id="theme-style" rel="stylesheet" href="/assets/s-site-assets-template-stylesheets/css/theme.css">
+        <link rel="stylesheet" href="/assets/s-site-assets-stylesheets/prism.css">
+        <link rel="stylesheet" href="/assets/s-site-assets-template-stylesheets/custom-css/styles.css">
+
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBJC11HF8Z"></script>
+        <script translate="no">
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-XBJC11HF8Z');
+        </script>
+        <script src="/assets/s-site-assets-scripts/sixth-sense.js"></script>
+        <script src="/assets/s-site-assets-scripts/sajari-head.js"></script>
+        <script src="/assets/s-site-assets-scripts/feather.min.js"></script>
+
+    </head> 
+
+    <body class="docs-page">
+        
+
+<header class="header fixed-top">
+  <div class="branding docs-branding">
+    <div class="container-fluid position-relative py-2">
+      <div class="docs-logo-wrapper">
+        <button id="docs-sidebar-toggler" class="docs-sidebar-toggler"
+          type="button">
+          <span></span> <span></span> <span></span>
+        </button>
+        <div class="site-logo"><a class="navbar-brand" href="https://support.brightcove.com/" style="margin-left: 15px;"> <img class="logo-icon me-2" src="/assets/s-site-assets-template-stylesheets/images/bc_logo_black_1@1x.png" alt="商標" style="margin-bottom: 9px;"/>
+            <!-- <span class="logo-text">BRIGHTCOVE</span> -->
+          </a></div>
+      </div><!--//docs-logo-wrapper-->
+
+      <div class="docs-top-utilities d-flex justify-content-end
+        align-items-center">
+        
+        <!-- Search bar -->
+        <div id="nav-search-box" class="top-search-box d-none d-lg-flex" style="margin-right: 10px ;"></div>
+
+<select id="site_select" class="form-select select-focus" style="width:
+          20%; margin-right: 10px;" translate="no">
+          <option value="">Other Brightcove Docs</option>
+          
+          
+          <option value="https://support.brightcove.com" translate="no">Documentation Home</option>
+          
+          
+          
+          <option value="https://support.brightcove.com/" translate="no">-- VIDEO CLOUD --</option>
+          
+          
+          
+          <option value="https://studio.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Video Cloud Studio</option>
+          
+          
+          
+          <option value="https://mstudio.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Marketing Studio</option>
+          
+          
+          
+          <option value="https://player.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Player Development</option>
+          
+          
+          
+          <option value="https://apis.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Video Cloud Platform APIs</option>
+          
+          
+          
+          <option value="https://sdks.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Video Cloud Device SDKs</option>
+          
+          
+          
+          <option value="https://integrations.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Integrations and CMS Connectors</option>
+          
+          
+          
+          <option value="https://general.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Video Cloud General Information</option>
+          
+          
+          
+          <option value="https://support.brightcove.com/" translate="no">-- VIDEO ESSENTIALS --</option>
+          
+          
+          
+          <option value="https://audience-insights.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Audience Insights</option>
+          
+          
+          
+          <option value="https://beacon-help.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Beacon Studio</option>
+          
+          
+          
+          <option value="https://beacon.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Beacon Classic</option>
+          
+          
+          
+          <option value="https://corptv.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;CorpTV</option>
+          
+          
+          
+          <option value="https://live.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Live</option>
+          
+          
+          
+          <option value="https://zencoder.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Zencoder</option>
+          
+          
+          
+          <option value="https://support.brightcove.com/" translate="no">-- VIDEO CLOUD ADD-ONS --</option>
+          
+          
+          
+          <option value="https://gallery.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Gallery</option>
+          
+          
+          
+          <option value="https://studio.support.brightcove.com/social/index.html" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Social</option>
+          
+          
+          
+          <option value="https://interactivity.support.brightcove.com/index.html" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Interactivity</option>
+          
+          
+          
+          <option value="https://ssai.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove SSAI</option>
+          
+          
+          
+          <option value="https://campaign.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Campaign</option>
+          
+          
+        </select>
+
+        <select id="language_select" class="form-select select-focus" style="width: 10%;"
+          onchange="doGTranslate(this);" translate="no">
+          <!-- <option value="">Select Language</option> -->
+          <option value="en|en" translate="No">English</option>
+          <option value="en|zh-TW" translate="No">繁體中文</option>
+          <option value="en|fr" translate="No">Français</option>
+          <option value="en|de" translate="No">Deutsche</option>
+          <option value="en|ja" translate="No">日本語</option>
+          <option value="en|ko" translate="No">한국어</option>
+          <option value="en|es" translate="No">Español</option>
+        </select>
+
+        <script translate="no">
+          /* <![CDATA[ */
+          function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];var plang=location.hostname.split('.')[0];if(plang.length !=2 && plang.toLowerCase() != 'zh-cn' && plang.toLowerCase() != 'zh-tw')plang='en';location.href=location.protocol+'//'+(lang == 'en' ? '' : lang+'.')+location.hostname.replace('www.', '').replace(RegExp('^' + plang + '\\.'), '')+location.pathname+location.search;}
+          /* ]]> */
+        </script>
+      </div>
+    </div>
+  </div>
+</header><!--//header-->
+
+<div class="docs-wrapper">
+  <div id="docs-sidebar" class="docs-sidebar" style="padding-right: 15px;">
+    <div id="nav-search-box" class="top-search-box d-lg-none p-3"></div>
+    <div class="row">
+      
+        <div id="side_nav" style="margin-left: 1em; display: inline-block; border-right: 1px solid #e5e5e6; padding-right: 1em;">
+          
+          <nav class="docs-nav sidenav" aria-label="Main">
+            <ul class="site-nav" style="list-style-type: none;">
+            
+            
+            
+            <li class="nav-item section-title"><a class="nav-link" href="/index.html">首頁</a></li>
+            
+            
+            
+            
+            <li class="nav-item section-title"><a class="nav-link" href="/getting-started/index.html"><span class="theme-icon-holder me-2"><i class="fa-solid fa-plus"></i></span>&nbsp;</a>入門</a>
+              <ul role="list" class="section-items list-unstyled nav flex-column pb-3" style="display:none;">
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="/getting-started/video-cloud-ssai-overview.html">SAI 概要</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="https://studio.support.brightcove.com/admin/general/configuring-server-side-ad-settings.html">設定伺服器端廣告設定</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="/getting-started/video-cloud-ssai-ad-logs.html" aria-current="page">SSAI 廣告跟踪日誌</a></li>
+              
+              
+              
+            </ul>
+            </li>
+            
+            
+            
+            <li class="nav-item section-title"><a class="nav-link" href="/vod/guides/index.html"><span class="theme-icon-holder me-2"><i class="fa-solid fa-plus"></i></span>&nbsp;</a>視頻點播指南</a>
+              <ul role="list" class="section-items list-unstyled nav flex-column pb-3" style="display:none;">
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="https://player.support.brightcove.com/plugins/implementing-server-side-ads-brightcove-player.html">使用 Brightcove Player 實施 SSAI</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="https://sdks.support.brightcove.com/features/implementing-server-side-ads-native-player-sdks.html">使用原生開發套件實作 SSAI </a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="/vod/guides/ssai-non-bc-players.html">使用非 Brightcove 播放器實施 SSAI</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="/vod/guides/ssai-ad-block-detection-and-auto-failover.html">：廣告區塊偵測與自動容錯移轉</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="https://apis.support.brightcove.com/ssai/getting-started/video-cloud-ssai-ad-config-api.html">視訊雲端 SSAI 配置 API </a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="/vod/guides/video-cloud-ssai-ad-tag-validation.html">視訊雲端 SSAI 廣告標籤驗證</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="/vod/guides/ad-error-beacons-ssai.html">SSAI 的廣告錯誤信標</a></li>
+              
+              
+              
+            </ul>
+            </li>
+            
+            
+            
+            <li class="nav-item section-title"><a class="nav-link" href="https://apis.support.brightcove.com/ssai/references/index.html"><span class="theme-icon-holder me-2"><i class="fa-solid fa-plus"></i></span>&nbsp;</a>視頻點播參考</a>
+              <ul role="list" class="section-items list-unstyled nav flex-column pb-3" style="display:none;">
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="https://apis.support.brightcove.com/ssai/references/reference.html">SAI API 參考資料</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="https://apis.support.brightcove.com/ssai/references/ssai-api-error-reference.html">SAI API 錯誤參考</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="https://player.support.brightcove.com/plugins/changelog/server-side-ads-plugin-changelog.html">伺服器端廣告外掛程式變更記錄</a></li>
+              
+              
+              
+            </ul>
+            </li>
+            
+            
+            
+            <li class="nav-item section-title"><a class="nav-link" href="/live/guides/index.html"><span class="theme-icon-holder me-2"><i class="fa-solid fa-plus"></i></span>&nbsp;</a>現場導遊</a>
+              <ul role="list" class="section-items list-unstyled nav flex-column pb-3" style="display:none;">
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="https://live.support.brightcove.com/live-module/implementing-server-side-ads-live-module.html">在即時模組中實施 SSAI </a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="https://apis.support.brightcove.com/live-api/ssai/live-api-server-side-ad-insertion-ssai.html">布萊特灣即時 API：伺服器端廣告插入 (SSAI) </a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="https://apis.support.brightcove.com/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html">即時 API：提示點和廣告信標與 SSAI </a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="https://player.support.brightcove.com/advertising/client-side-preroll-with-live-ssai.html">使用即時 SSAI 的客戶端預售廣告</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="/live/guides/overview-player-enhancements-live-ssai.html">概述：即時 SSAI 的玩家增強功能</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="/live/guides/implementing-player-enhancements-live-ssai.html">實作即時 SSAI 的播放器增強功能</a></li>
+              
+              
+              
+            </ul>
+            </li>
+            
+            
+            
+            <li class="nav-item section-title"><a class="nav-link" href="/live/references/index.html"><span class="theme-icon-holder me-2"><i class="fa-solid fa-plus"></i></span>&nbsp;</a>實時參考</a>
+              <ul role="list" class="section-items list-unstyled nav flex-column pb-3" style="display:none;">
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="/live/references/reference.html">即時 API 參考</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="https://apis.support.brightcove.com/live-api/references/live-api-error-messages.html">即時 API：錯誤訊息</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="https://live.support.brightcove.com/release-notes/live-api-release-notes.html">即時 API 發行紀錄</a></li>
+              
+              
+              
+            </ul>
+            </li>
+            
+            
+            
+            <li class="nav-item section-title"><a class="nav-link" href="/support/index.html"><span class="theme-icon-holder me-2"><i class="fa-solid fa-plus"></i></span>&nbsp;</a>開發人員支持</a>
+              <ul role="list" class="section-items list-unstyled nav flex-column pb-3" style="display:none;">
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="/support/viewing-brightcove-system-status-page.html">檢視布萊特灣系統狀態頁面</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="/support/contact-sales.html">聯絡銷售人員</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="/support/opening-case-with-brightcove-support.html">開啟支援案例</a></li>
+              
+              
+              
+              
+              
+              <li class="nav-item"><a class="nav-link" href="/support/reset-support-portal-password.html">重置您的支持門戶密碼</a></li>
+              
+              
+              
+            </ul>
+            </li>
+            
+            
+          </ul>
+          </nav>
+        </div>
+      </div>
+    </div><!--//docs-sidebar-->
+  </div>
+</div>
+
+<div style="margin-top: 20px;">
+  <div class="docs-content" style="padding-bottom: 0px;">
+    <div class="container">
+      <div class="docs-overview">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            
+            <li class="breadcrumb-item"><a class="theme-link" href="/">首頁</a></li>
+            
+            
+            <li class="breadcrumb-item"><a class="theme-link" href="/getting-started/">入門</a></li>
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">SSAI 廣告跟踪日誌</li>
+            
+            
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="docs-content">
+  <div class="container">
+    <div class="docs-overview py-5">
+      
+      <div class="centered-inpage-nav" id="centered_inpage_nav">
+        <nav id="centered_toc">
+          <select id="centered_in_page_toc" class="form-select select-focus"></select>
+        </nav>
+      </div>
+      <br/>
+      
+      
+<h1>SSAI 廣告跟踪日誌</h1>
+<article class="bcls-article">
+  <summary>SSAI 廣告跟踪日誌是一項新功能，旨在提供有關 SSAI 廣告運作方式的詳細信息。此功能適用於 VOD 和直播。</summary>
+  <section class="bcls-section">
+    <h2 id="Introduction">簡介</h2>
+    <p>Brightcove 提供廣告跟踪日誌，以幫助您從獲利角度了解支持 SSAI 的直播和視頻的表現，並解決任何問題。這些日誌包括對廣告服務器的請求：廣告請求、錯誤和跟踪事件。</p>
+    <p>日誌還允許您計算性能指標：</p>
+    <ul>
+      <li>廣告請求：向廣告服務器請求廣告的次數。</li>
+      <li>觸發的廣告跟踪事件：從 BC SSAI 服務器觸發的信標事件數。它可以是每種類型的細分：<code translate="no">AdStart</code> , <code translate="no">AdComplete</code> , <code translate="no">AdfirstQuartile</code> , <code translate="no">Admidpoint</code> , <code translate="no">AdthirdQuartile</code> , <code translate="no">AdcreativeView</code></li>
+      <li>Ad Delivery Rate：成功的廣告請求總數/廣告請求總數的比率</li>
+    </ul>
+  </section>
+  <section class="bcls-section">
+    <h2 id="Setup">設定</h2>
+    <p>要啟用 SSAI 廣告跟踪日誌，您必須執行以下操作：</p>
+    <ol class="bcls-tasklist-restart">
+      <li>在您的首選區域中創建 S3 存儲桶。</li>
+      <li>為 Brightcove Support 提供您的存儲桶名稱和區域。</li>
+      <li>添加支持人員提供給您的安全策略，使 Brightcove 能夠寫入您的存儲桶。</li>
+      <li>設置 S3 存儲桶後，開始記錄廣告配置集<code translate="no">ad_tracking_sample_percentage</code>給你的<a href="https://apis.support.brightcove.com/live-api/references/reference.html#operation/CreateAdConfiguration">直播廣告配置</a>和/或你的<a href="https://apis.support.brightcove.com/ssai/getting-started/video-cloud-ssai-ad-config-api.html#Create_an_ad_configuration">VOD 廣告配置</a> .</li>
+    </ol>
+    <!-- <aside class="bcls-aside bcls-aside--information language-editable">Note that having logs sent automatically to an S3 bucket is optional. If you do not wish to do this, you can still request logs from <a href="https://supportportal.brightcove.com">Brightcove Support</a>.</aside> -->
+  </section>
+  <section class="bcls-section">
+    <h2 id="File_format">文件格式</h2>
+    <p>日誌文件將根據此架構組織在您的 S3 存儲桶中：</p>
+    <pre><code translate="no">/yyyy/MM/dd/HH/&lt;random-string&gt;/&lt;delivery stream name&gt;-&lt;delivery stream version&gt;-&lt;year&gt;-&lt;month&gt;-&lt;day&gt;-&lt;hour&gt;-&lt;minute&gt;-&lt;second&gt;-&lt;uuid&gt;</code></pre>
+    <p><code translate="No">&lt;random-string&gt;</code>和<code translate="No">&lt;/uuid&gt;</code>，每批都會不同，日誌以5MB或300秒的數據為批次。不同會話和作業的日誌將混合在批次中。</p>
+    <h3>示例路徑/文件</h3>
+    <pre><code translate="no">/2021/07/17/00/00HwB2cbPB2/prod-ssai-ad-tracking-4040098940001-1-2021-07-17-00-37-09-caeb9e2e-8b54-42f6-b4f7-cbddfc5090e6</code></pre>
+  </section>
+  <section class="bcls-section">
+    <h2 id="Sample_log_entries">示例日誌條目</h2>
+    <p>下面是一些示例日誌條目。</p>
+    <details>
+      <summary>示例日誌條目：有創造力的</summary>
+      <pre class="line-numbers"><code class="language-json" translate="No">{
+  "session_id": "9b393cbf9a4d4528a850c79a283b8b25",
+  "summary_id": "adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b-9b393cbf9a4d4528a850c79a283b8b25",
+  "adbreak_id": "adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b",
+  "account_id": "5100000201001",
+  "live_account_id": "e807026ec740429985d04b91cf936f81",
+  "live_job_id": "992ab149ce3e40b6a5b9c6d9842a0979",
+  "kind": "Creative",
+  "timestamp": "2021-06-28T23:12:09.632710435Z",
+  "span_id": 3223646445953404770,
+  "parent_span_id": 3004116763771491424,
+  "state": "active",
+  "fk": "ad-id-1",
+  "source_url": "https://somesourceasset.com/adcreative.mp4"
+}</code></pre>
+    </details>
+    <details>
+      <summary>示例日誌條目：廣告請求</summary>
+      <pre class="line-numbers"><code class="language-json" translate="No">{
+  "session_id": "9b393cbf9a4d4528a850c79a283b8b25",
+  "summary_id": "adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b-9b393cbf9a4d4528a850c79a283b8b25",
+  "adbreak_id": "adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b",
+  "account_id": "5100000201001",
+  "live_account_id": "e807026ec740429985d04b91cf936f81",
+  "live_job_id": "992ab149ce3e40b6a5b9c6d9842a0979",
+  "kind": "AdRequest",
+  "timestamp": "2021-06-28T23:12:09.585696184Z",
+  "span_id": 5596747569705325007,
+  "parent_span_id": 5124250183191295144,
+  "url": "https://ad-provider-host.com/path/to/ad-handler",
+  "request_headers": {
+    "Referer": [
+      "https://referer-host.com"
+    ],
+    "User-Agent": [
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"
+    ],
+    "X-Forwarded-For": [
+      "127.0.0.1"
+    ]
+  },
+  "response_headers": {
+    "Accept-Ranges": [
+      "bytes"
+    ],
+    "Age": [
+      "66004"
+    ],
+    "Connection": [
+      "keep-alive"
+    ],
+    "Content-Length": [
+      "1289"
+    ],
+    "Content-Type": [
+      "application/xml"
+    ],
+    "Date": [
+      "Mon, 28 Jun 2021 04:52:06 GMT"
+    ],
+    "Etag": [
+      "\"0801eec0f0f1c1378b409f0b1eaa241e\""
+    ],
+    "Last-Modified": [
+      "Wed, 28 Dec 2016 20:10:29 GMT"
+    ],
+    "Server": [
+      "AmazonS3"
+    ],
+    "Via": [
+      "1.1 56c69262ecfa7873b40572ba8a323243.cloudfront.net (CloudFront)"
+    ],
+    "X-Amz-Cf-Id": [
+      "2SvJiWD30gamE4-w6KL3z9shrGpU2ZAvujfsBTJbC9KSoAy0UDzDBw=="
+    ],
+    "X-Amz-Cf-Pop": [
+      "HIO50-C1"
+    ],
+    "X-Cache": [
+      "Hit from cloudfront"
+    ]
+  },
+  "status_code": 200,
+  "duration": 1910203645,
+  "provider": "vast_3"
+}</code></pre>
+    </details>
+    <details>
+      <summary>示例日誌條目：會議摘要</summary>
+      <pre class="line-numbers"><code class="language-json" translate="No">{
+  "account_id": "5100000201001",
+  "session_id": "9b393cbf9a4d4528a850c79a283b8b25",
+  "live_account_id": "e807026ec740429985d04b91cf936f81",
+  "live_job_id": "992ab149ce3e40b6a5b9c6d9842a0979",
+  "live_app_id": "a51db89789e0413a87ee356bed6965b0",
+  "region": "us-west-2",
+  "kind": "SessionSummary",
+  "duration": 1923000000,
+  "status_code": 200,
+  "timestamp": "2021-06-28T23:12:11.499Z",
+  "adbreak_id": "adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b",
+  "summary_id": "adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b-9b393cbf9a4d4528a850c79a283b8b25",
+  "odur": 32000000000,
+  "rdur": 32000000000,
+  "sdur": 34000000000,
+  "ad_count": 1,
+  "client_only_tracking": false,
+  "sls": false,
+  "ads": [
+    {
+      "type": "midroll",
+      "fk": "ad-id-1",
+      "imps": [
+        {
+          "type": "AdStart",
+          "url": "https://ad-provider-host.com/api/tracking?event=impression"
+        },
+        {
+          "type": "AdFirstQuartile",
+          "url": "https://ad-provider-host.com/api/tracking?event=firstQuartile"
+        },
+        {
+          "type": "AdMidpoint",
+          "url": "https://ad-provider-host.com/api/tracking?event=midpoint"
+        },
+        {
+          "type": "AdThirdQuartile",
+          "url": "https://ad-provider-host.com/api/tracking?event=thirdQuartile"
+        },
+        {
+          "type": "AdComplete",
+          "url": "https://ad-provider-host.com/api/tracking?event=complete"
+        }
+      ],
+      "cdur": 30322000000
+    }
+  ]
+}</code></pre>
+    </details>
+    <details>
+      <summary>示例日誌條目：印象</summary>
+      <pre class="line-numbers"><code class="language-json" translate="No">{
+  "account_id": "5100000201001",
+  "region": "us-west-2",
+  "kind": "Impression",
+  "impression_type": "AdStart",
+  "summary_id": "adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b-9b393cbf9a4d4528a850c79a283b8b25",
+  "adbreak_id": "adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b",
+  "live_account_id": "e807026ec740429985d04b91cf936f81",
+  "live_job_id": "992ab149ce3e40b6a5b9c6d9842a0979",
+  "session_id": "9b393cbf9a4d4528a850c79a283b8b25",
+  "live_app_id": "a51db89789e0413a87ee356bed6965b0",
+  "timestamp": "2021-06-28T23:12:11.499Z",
+  "url": "https://ad-provider-host.com/api/tracking?event=impression",
+  "request_headers": {
+    "Connection": "keep-alive",
+    "X-Forwarded-For": "127.0.0.1",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15",
+    "Referer": "https://referer-host.com"
+  },
+  "status_code": 200,
+  "duration": 114524248.00000153
+}</code></pre>
+    </details>
+    <h3>整批</h3>
+    <p>上面的示例是單獨的條目。Brightcove 將匯總這些，用新行分隔，並將匯總的日誌寫入您的 S3 存儲桶。以下是完整日誌文件的示例。</p>
+    <details>
+      <summary>示例完整日誌文件</summary>
+      <pre class="line-numbers"><code class="language-json" translate="No">{"session_id":"9b393cbf9a4d4528a850c79a283b8b25","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b-9b393cbf9a4d4528a850c79a283b8b25","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b","account_id":"5100000201001","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","kind":"Creative","timestamp":"2021-06-28T23:12:09.632710435Z","span_id":3223646445953404770,"parent_span_id":3004116763771491424,"state":"active","fk":"ad-id-1","source_url":"https://somesourceasset.com/adcreative.mp4"}
+  {"session_id":"9b393cbf9a4d4528a850c79a283b8b25","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b-9b393cbf9a4d4528a850c79a283b8b25","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b","account_id":"5100000201001","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","kind":"AdRequest","timestamp":"2021-06-28T23:12:09.585696184Z","span_id":5596747569705325007,"parent_span_id":5124250183191295144,"url":"https://ad-provider-host.com/path/to/ad-handler","request_headers":{"Referer":["https://referer-host.com"],"User-Agent":["Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"],"X-Forwarded-For":["127.0.0.1"]},"response_headers":{"Accept-Ranges":["bytes"],"Age":["66004"],"Connection":["keep-alive"],"Content-Length":["1289"],"Content-Type":["application/xml"],"Date":["Mon, 28 Jun 2021 04:52:06 GMT"],"Etag":["\"0801eec0f0f1c1378b409f0b1eaa241e\""],"Last-Modified":["Wed, 28 Dec 2016 20:10:29 GMT"],"Server":["AmazonS3"],"Via":["1.1 56c69262ecfa7873b40572ba8a323243.cloudfront.net (CloudFront)"],"X-Amz-Cf-Id":["2SvJiWD30gamE4-w6KL3z9shrGpU2ZAvujfsBTJbC9KSoAy0UDzDBw=="],"X-Amz-Cf-Pop":["HIO50-C1"],"X-Cache":["Hit from cloudfront"]},"status_code":200,"duration":1910203645,"provider":"vast_3"}
+  {"account_id":"5100000201001","session_id":"9b393cbf9a4d4528a850c79a283b8b25","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","live_app_id":"a51db89789e0413a87ee356bed6965b0","region":"us-west-2","kind":"SessionSummary","duration":1923000000,"status_code":200,"timestamp":"2021-06-28T23:12:11.499Z","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b-9b393cbf9a4d4528a850c79a283b8b25","odur":32000000000,"rdur":32000000000,"sdur":34000000000,"ad_count":1,"client_only_tracking":false,"sls":false,"ads":[{"type":"midroll","fk":"ad-id-1","imps":[{"type":"AdStart","url":"https://ad-provider-host.com/api/tracking?event=impression"},{"type":"AdFirstQuartile","url":"https://ad-provider-host.com/api/tracking?event=firstQuartile"},{"type":"AdMidpoint","url":"https://ad-provider-host.com/api/tracking?event=midpoint"},{"type":"AdThirdQuartile","url":"https://ad-provider-host.com/api/tracking?event=thirdQuartile"},{"type":"AdComplete","url":"https://ad-provider-host.com/api/tracking?event=complete"}],"cdur":30322000000}]}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdStart","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b-9b393cbf9a4d4528a850c79a283b8b25","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"9b393cbf9a4d4528a850c79a283b8b25","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:12:11.499Z","url":"https://ad-provider-host.com/api/tracking?event=impression","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":114524248.00000153}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdFirstQuartile","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b-9b393cbf9a4d4528a850c79a283b8b25","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"9b393cbf9a4d4528a850c79a283b8b25","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:12:11.501Z","url":"https://ad-provider-host.com/api/tracking?event=firstQuartile","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":94157248.00014868}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdMidpoint","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b-9b393cbf9a4d4528a850c79a283b8b25","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"9b393cbf9a4d4528a850c79a283b8b25","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:12:11.502Z","url":"https://ad-provider-host.com/api/tracking?event=midpoint","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":9150570.999830961}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdThirdQuartile","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b-9b393cbf9a4d4528a850c79a283b8b25","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"9b393cbf9a4d4528a850c79a283b8b25","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:12:11.503Z","url":"https://ad-provider-host.com/api/tracking?event=thirdQuartile","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":13312409.999780357}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdComplete","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b-9b393cbf9a4d4528a850c79a283b8b25","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-0e96c29df5214a4195e7e94f9cf90c8b","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"9b393cbf9a4d4528a850c79a283b8b25","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:12:11.504Z","url":"https://ad-provider-host.com/api/tracking?event=complete","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":12268809.00003016}
+  {"session_id":"9b393cbf9a4d4528a850c79a283b8b25","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c-9b393cbf9a4d4528a850c79a283b8b25","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c","account_id":"5100000201001","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","kind":"Creative","timestamp":"2021-06-28T23:14:35.099703094Z","span_id":6674394482725440815,"parent_span_id":1318535851542687167,"state":"active","fk":"ad-id-1","source_url":"https://somesourceasset.com/adcreative.mp4"}
+  {"session_id":"9b393cbf9a4d4528a850c79a283b8b25","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c-9b393cbf9a4d4528a850c79a283b8b25","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c","account_id":"5100000201001","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","kind":"AdRequest","timestamp":"2021-06-28T23:14:35.037747217Z","span_id":879241329021924545,"parent_span_id":2738404345413976285,"url":"https://ad-provider-host.com/path/to/ad-handler","request_headers":{"Referer":["https://referer-host.com"],"User-Agent":["Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"],"X-Forwarded-For":["127.0.0.1"]},"response_headers":{"Accept-Ranges":["bytes"],"Age":["66150"],"Connection":["keep-alive"],"Content-Length":["1289"],"Content-Type":["application/xml"],"Date":["Mon, 28 Jun 2021 04:52:06 GMT"],"Etag":["\"0801eec0f0f1c1378b409f0b1eaa241e\""],"Last-Modified":["Wed, 28 Dec 2016 20:10:29 GMT"],"Server":["AmazonS3"],"Via":["1.1 1b0911478686968732f973d6e5e31d11.cloudfront.net (CloudFront)"],"X-Amz-Cf-Id":["gwjYU97w_Ko7_VOEJo_I7mQIia4aUxI6NhpL79QBwcGovwgqsiQQ2Q=="],"X-Amz-Cf-Pop":["HIO50-C1"],"X-Cache":["Hit from cloudfront"]},"status_code":200,"duration":62517876,"provider":"vast_3"}
+  {"account_id":"5100000201001","session_id":"9b393cbf9a4d4528a850c79a283b8b25","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","live_app_id":"a51db89789e0413a87ee356bed6965b0","region":"us-west-2","kind":"SessionSummary","duration":74000000,"status_code":200,"timestamp":"2021-06-28T23:14:35.103Z","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c-9b393cbf9a4d4528a850c79a283b8b25","odur":32000000000,"rdur":32000000000,"sdur":34000000000,"ad_count":1,"client_only_tracking":false,"sls":false,"ads":[{"type":"midroll","fk":"ad-id-1","imps":[{"type":"AdStart","url":"https://ad-provider-host.com/api/tracking?event=impression"},{"type":"AdFirstQuartile","url":"https://ad-provider-host.com/api/tracking?event=firstQuartile"},{"type":"AdMidpoint","url":"https://ad-provider-host.com/api/tracking?event=midpoint"},{"type":"AdThirdQuartile","url":"https://ad-provider-host.com/api/tracking?event=thirdQuartile"},{"type":"AdComplete","url":"https://ad-provider-host.com/api/tracking?event=complete"}],"cdur":30322000000}]}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdStart","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c-9b393cbf9a4d4528a850c79a283b8b25","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"9b393cbf9a4d4528a850c79a283b8b25","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:14:35.104Z","url":"https://ad-provider-host.com/api/tracking?event=impression","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":68253645.00004798}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdFirstQuartile","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c-9b393cbf9a4d4528a850c79a283b8b25","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"9b393cbf9a4d4528a850c79a283b8b25","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:14:35.105Z","url":"https://ad-provider-host.com/api/tracking?event=firstQuartile","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":73142498.99983406}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdMidpoint","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c-9b393cbf9a4d4528a850c79a283b8b25","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"9b393cbf9a4d4528a850c79a283b8b25","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:14:35.106Z","url":"https://ad-provider-host.com/api/tracking?event=midpoint","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":7360496.000153944}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdThirdQuartile","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c-9b393cbf9a4d4528a850c79a283b8b25","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"9b393cbf9a4d4528a850c79a283b8b25","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:14:35.107Z","url":"https://ad-provider-host.com/api/tracking?event=thirdQuartile","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":15530145.999975502}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdComplete","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c-9b393cbf9a4d4528a850c79a283b8b25","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-522e68923faf435ebc5710ec9ba12f8c","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"9b393cbf9a4d4528a850c79a283b8b25","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:14:35.108Z","url":"https://ad-provider-host.com/api/tracking?event=complete","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":18099798.00018482}
+  {"session_id":"3799e473b53d47c1a4aba1a96282ae63","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115-3799e473b53d47c1a4aba1a96282ae63","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115","account_id":"5100000201001","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","kind":"Creative","timestamp":"2021-06-28T23:17:50.848526142Z","span_id":1072414950932142870,"parent_span_id":3759119308175968927,"state":"active","fk":"ad-id-1","source_url":"https://somesourceasset.com/adcreative.mp4"}
+  {"session_id":"3799e473b53d47c1a4aba1a96282ae63","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115-3799e473b53d47c1a4aba1a96282ae63","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115","account_id":"5100000201001","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","kind":"AdRequest","timestamp":"2021-06-28T23:17:50.803309913Z","span_id":5501083171814814828,"parent_span_id":2777154131847882503,"url":"https://ad-provider-host.com/path/to/ad-handler","request_headers":{"Referer":["https://referer-host.com"],"User-Agent":["Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"],"X-Forwarded-For":["127.0.0.1"]},"response_headers":{"Accept-Ranges":["bytes"],"Age":["66345"],"Connection":["keep-alive"],"Content-Length":["1289"],"Content-Type":["application/xml"],"Date":["Mon, 28 Jun 2021 04:52:06 GMT"],"Etag":["\"0801eec0f0f1c1378b409f0b1eaa241e\""],"Last-Modified":["Wed, 28 Dec 2016 20:10:29 GMT"],"Server":["AmazonS3"],"Via":["1.1 1cc6ed0d2d3dd9529ce544f9dfe61a53.cloudfront.net (CloudFront)"],"X-Amz-Cf-Id":["6ChJOWTNhXQ54nrI-0NfiI3HELyzVmDKFmi-6JhCYyzzcnh-FejM5A=="],"X-Amz-Cf-Pop":["HIO50-C1"],"X-Cache":["Hit from cloudfront"]},"status_code":200,"duration":463516026,"provider":"vast_3"}
+  {"account_id":"5100000201001","session_id":"3799e473b53d47c1a4aba1a96282ae63","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","live_app_id":"a51db89789e0413a87ee356bed6965b0","region":"us-west-2","kind":"SessionSummary","duration":481000000,"status_code":200,"timestamp":"2021-06-28T23:17:51.274Z","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115-3799e473b53d47c1a4aba1a96282ae63","odur":32000000000,"rdur":32000000000,"sdur":34000000000,"ad_count":1,"client_only_tracking":false,"sls":false,"ads":[{"type":"midroll","fk":"ad-id-1","imps":[{"type":"AdStart","url":"https://ad-provider-host.com/api/tracking?event=impression"},{"type":"AdFirstQuartile","url":"https://ad-provider-host.com/api/tracking?event=firstQuartile"},{"type":"AdMidpoint","url":"https://ad-provider-host.com/api/tracking?event=midpoint"},{"type":"AdThirdQuartile","url":"https://ad-provider-host.com/api/tracking?event=thirdQuartile"},{"type":"AdComplete","url":"https://ad-provider-host.com/api/tracking?event=complete"}],"cdur":30322000000}]}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdStart","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115-3799e473b53d47c1a4aba1a96282ae63","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"3799e473b53d47c1a4aba1a96282ae63","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:17:51.276Z","url":"https://ad-provider-host.com/api/tracking?event=impression","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":100628732.00001195}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdFirstQuartile","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115-3799e473b53d47c1a4aba1a96282ae63","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"3799e473b53d47c1a4aba1a96282ae63","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:17:51.277Z","url":"https://ad-provider-host.com/api/tracking?event=firstQuartile","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":72044457.99998939}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdMidpoint","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115-3799e473b53d47c1a4aba1a96282ae63","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"3799e473b53d47c1a4aba1a96282ae63","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:17:51.278Z","url":"https://ad-provider-host.com/api/tracking?event=midpoint","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":7449264.000169933}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdThirdQuartile","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115-3799e473b53d47c1a4aba1a96282ae63","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"3799e473b53d47c1a4aba1a96282ae63","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:17:51.279Z","url":"https://ad-provider-host.com/api/tracking?event=thirdQuartile","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":7948938.000015914}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdComplete","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115-3799e473b53d47c1a4aba1a96282ae63","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-f1eb781318d847eea4941009c37fd115","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"3799e473b53d47c1a4aba1a96282ae63","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:17:51.280Z","url":"https://ad-provider-host.com/api/tracking?event=complete","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":9952213.999815285}
+  {"session_id":"3799e473b53d47c1a4aba1a96282ae63","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-20063d6dae794906af1251c6948400db-3799e473b53d47c1a4aba1a96282ae63","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-20063d6dae794906af1251c6948400db","account_id":"5100000201001","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","kind":"Creative","timestamp":"2021-06-28T23:21:31.192038303Z","span_id":2134906764417527191,"parent_span_id":8679583036437874814,"state":"active","fk":"ad-id-1","source_url":"https://somesourceasset.com/adcreative.mp4"}
+  {"session_id":"3799e473b53d47c1a4aba1a96282ae63","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-20063d6dae794906af1251c6948400db-3799e473b53d47c1a4aba1a96282ae63","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-20063d6dae794906af1251c6948400db","account_id":"5100000201001","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","kind":"AdRequest","timestamp":"2021-06-28T23:21:31.154993034Z","span_id":8570463038803610161,"parent_span_id":3420437761948447498,"url":"https://ad-provider-host.com/path/to/ad-handler","request_headers":{"Referer":["https://referer-host.com"],"User-Agent":["Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"],"X-Forwarded-For":["127.0.0.1"]},"response_headers":{"Accept-Ranges":["bytes"],"Age":["66566"],"Connection":["keep-alive"],"Content-Length":["1289"],"Content-Type":["application/xml"],"Date":["Mon, 28 Jun 2021 04:52:06 GMT"],"Etag":["\"0801eec0f0f1c1378b409f0b1eaa241e\""],"Last-Modified":["Wed, 28 Dec 2016 20:10:29 GMT"],"Server":["AmazonS3"],"Via":["1.1 41e349e25dc4bc856d0e5d2c162428a0.cloudfront.net (CloudFront)"],"X-Amz-Cf-Id":["PdYetvq3mfyZyeYyzW4zBsRGTaopewgHBTkDGKU3d4CgwrKATC8HYQ=="],"X-Amz-Cf-Pop":["HIO50-C1"],"X-Cache":["Hit from cloudfront"]},"status_code":200,"duration":37220442,"provider":"vast_3"}
+  {"account_id":"5100000201001","session_id":"3799e473b53d47c1a4aba1a96282ae63","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","live_app_id":"a51db89789e0413a87ee356bed6965b0","region":"us-west-2","kind":"SessionSummary","duration":51000000,"status_code":200,"timestamp":"2021-06-28T23:21:31.195Z","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-20063d6dae794906af1251c6948400db","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-20063d6dae794906af1251c6948400db-3799e473b53d47c1a4aba1a96282ae63","odur":32000000000,"rdur":32000000000,"sdur":34000000000,"ad_count":1,"client_only_tracking":false,"sls":false,"ads":[{"type":"midroll","fk":"ad-id-1","imps":[{"type":"AdStart","url":"https://ad-provider-host.com/api/tracking?event=impression"},{"type":"AdFirstQuartile","url":"https://ad-provider-host.com/api/tracking?event=firstQuartile"},{"type":"AdMidpoint","url":"https://ad-provider-host.com/api/tracking?event=midpoint"},{"type":"AdThirdQuartile","url":"https://ad-provider-host.com/api/tracking?event=thirdQuartile"},{"type":"AdComplete","url":"https://ad-provider-host.com/api/tracking?event=complete"}],"cdur":30322000000}]}
+  {"account_id":"5100000201001","region":"us-west-2","kind":"Impression","impression_type":"AdStart","summary_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-20063d6dae794906af1251c6948400db-3799e473b53d47c1a4aba1a96282ae63","adbreak_id":"adBreak-992ab149ce3e40b6a5b9c6d9842a0979-20063d6dae794906af1251c6948400db","live_account_id":"e807026ec740429985d04b91cf936f81","live_job_id":"992ab149ce3e40b6a5b9c6d9842a0979","session_id":"3799e473b53d47c1a4aba1a96282ae63","live_app_id":"a51db89789e0413a87ee356bed6965b0","timestamp":"2021-06-28T23:21:31.197Z","url":"https://ad-provider-host.com/api/tracking?event=impression","request_headers":{"Connection":"keep-alive","X-Forwarded-For":"127.0.0.1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15","Referer":"https://referer-host.com"},"status_code":200,"duration":106990529.99960259}</code></pre>
+    </details>
+  </section>
+  <section class="bcls-section">
+    <h2 id="Log_fields">日誌字段</h2>
+    <h3 id="Common_fields">公共領域</h3>
+    <p>所有日誌類型共享這些字段。</p>
+    <table class="bcls-table">
+      <caption class="bcls-caption--table">公共領域</caption>
+      <thead class="bcls-table__head">
+        <tr>
+          <th>欄位</th>
+          <th>類型</th>
+          <th>描述</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td><code translate="No">session_id</code></td>
+          <td>串</td>
+          <td>會話 ID。每個觀眾都是獨一無二的。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">summary_id</code></td>
+          <td>串</td>
+          <td>會話摘要 ID。對於 VOD，與 SessionID 相同。對於直播，每個廣告時段的每個會話都是唯一的。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">adbreak_id</code></td>
+          <td>串</td>
+          <td>廣告插播 ID。每個廣告插播時間唯一</td>
+        </tr>
+        <tr>
+          <td><code translate="No">account_id</code></td>
+          <td>串</td>
+          <td>視頻雲帳戶 ID。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">live_account_id</code></td>
+          <td>串</td>
+          <td>真實賬戶 ID。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">video_id</code></td>
+          <td>串</td>
+          <td>視訊雲端視訊 ID。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">live_job_id</code></td>
+          <td>串</td>
+          <td>實時作業 ID。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">live_app_id</code></td>
+          <td>串</td>
+          <td>實時 SSAI 應用程序 ID。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">title_id</code></td>
+          <td>串</td>
+          <td>VOD 標題 ID。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">kind</code></td>
+          <td>串</td>
+          <td>此日誌的日誌種類。<code translate="No">Creative</code> , <code translate="no">AdRequest</code> , <code translate="no">SessionSummary</code>， 或者<code translate="no">Impression</code> .</td>
+        </tr>
+        <tr>
+          <td><code translate="No">timestamp</code></td>
+          <td>串</td>
+          <td>日誌的時間戳。編組為 RFC3339 格式。例如“2021-06-03T11:39:22.787Z”。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">span_id</code></td>
+          <td>unit64</td>
+          <td>SpanID 是此日誌的跟踪 ID。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">parent_span_id</code></td>
+          <td>unit64</td>
+          <td>ParentSpanID 引用父日誌的 SpanID。此值可用於跟踪 VAST 包裝器調用鏈。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">error</code></td>
+          <td>布林</td>
+          <td>如果存在與此日誌關聯的錯誤，則為真。其含義取決於日誌種類。</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>HTTP 字段</h3>
+    <p>這些字段在用於向廣告提供商等外部服務發出的 HTTP 請求的日誌類型之間共享。</p>
+    <p>具有 HTTP 字段的日誌種類是：</p>
+    <ul>
+      <li><a href="#AdRequest_fields">廣告請求</a></li>
+      <li><a href="#Impression_fields">印象</a></li>
+    </ul>
+    <table class="bcls-table">
+      <caption class="bcls-caption--table">HTTP 字段</caption>
+      <thead class="bcls-table__head">
+        <tr>
+          <th>欄位</th>
+          <th>類型</th>
+          <th>描述</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td><code translate="No">url</code></td>
+          <td>串</td>
+          <td>請求網址。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">request_headers</code></td>
+          <td>地圖[字符串][]字符串</td>
+          <td>請求中發送的標頭。使用鍵的標題名稱和標題值的字符串列表進行映射。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">response_headers</code></td>
+          <td>地圖[字符串][]字符串</td>
+          <td>響應中收到的標頭。使用鍵的標題名稱和標題值的字符串列表進行映射。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">status_code</code></td>
+          <td>整數</td>
+          <td>響應狀態代碼。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">duration</code></td>
+          <td>整數64</td>
+          <td>以納秒為單位的請求持續時間。</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="SessionSummary_fields">SessionSummary 字段</h3>
+    <p>包含會話的廣告插入摘要。</p>
+    <p>包括<a href="#Common_fields">公共領域</a> .</p>
+    <table class="bcls-table">
+      <caption class="bcls-caption--table">SessionSummary 字段</caption>
+      <thead class="bcls-table__head">
+        <tr>
+          <th>欄位</th>
+          <th>類型</th>
+          <th>描述</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td><code translate="No">odur</code></td>
+          <td>整數64</td>
+          <td>要插入的廣告的 OriginalDuration。值以納秒為單位。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">rdur</code></td>
+          <td>整數64</td>
+          <td>RequestedDuration 可能與實時流中的 OriginalDuration 不同，具體取決於會話在廣告中斷期間連接的時間。例如session join 10s into 30s adbreak，Live會請求20s的廣告（odur=30,rdur=20）。值以納秒為單位。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">sdur</code></td>
+          <td>整數64</td>
+          <td>SubstitutedDuration 是用廣告替換的實時塊的持續時間。此值可能與 OriginalDuration 不同，具體取決於從提供商返回的廣告的持續時間以及是否插入了 slate。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">ad_count</code></td>
+          <td>整數</td>
+          <td>插入的廣告數。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">ads</code></td>
+          <td>[] <a href="#AdSummary_fields">廣告摘要</a></td>
+          <td>關於每個插入的廣告的摘要列表。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">sls</code></td>
+          <td>布林</td>
+          <td>如果廣告插播啟用了實時 SLS，則 SLS 為真。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">client_only_tracking</code></td>
+          <td>布林</td>
+          <td>如果廣告時段啟用了實時客戶端跟踪，則 ClientOnlyTracking 為真。</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="AdSummary_fields">AdSummary 字段</h3>
+    <table class="bcls-table">
+      <caption class="bcls-caption--table">AdSummary 字段</caption>
+      <thead class="bcls-table__head">
+        <tr>
+          <th>欄位</th>
+          <th>類型</th>
+          <th>描述</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td><code translate="No">imps</code></td>
+          <td>[] <a href="#ImpressionSummary_fields">印象總結</a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><code translate="No">fk</code></td>
+          <td>串</td>
+          <td>此廣告的創意外鍵。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">type</code></td>
+          <td>串</td>
+          <td>廣告類型。例如前貼片廣告、中貼片廣告等。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">cdur</code></td>
+          <td>整數64</td>
+          <td>CreativeDuration 是此廣告的持續時間。值以納秒為單位。</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="ImpressionSummary_fields">ImpressionSummary 字段</h3>
+    <table class="bcls-table">
+      <caption class="bcls-caption--table">ImpressionSummary 字段</caption>
+      <thead class="bcls-table__head">
+        <tr>
+          <th>欄位</th>
+          <th>類型</th>
+          <th>描述</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td><code translate="No">type</code></td>
+          <td>串</td>
+          <td>印象型。<code translate="no">AdStart</code> , <code translate="no">AdComplete</code> , <code translate="No">AdFirstQuartile</code> , <code translate="No">AdMidpoint</code>， 或者<code translate="No"><code translate="No">AdThirdQuartile</code></code> .</td>
+        </tr>
+        <tr>
+          <td><code translate="No">url</code></td>
+          <td>串</td>
+          <td>將印象發送到的 URL。</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="AdRequest_fields">AdRequest 字段</h3>
+    <p>包含廣告提供商的 HTTP 請求和響應數據。</p>
+    <p>包括<a href="#Common_fields">公共領域</a>和<a href="#HTTP_fields">HTTP 字段</a></p>
+    <table class="bcls-table">
+      <caption class="bcls-caption--table">AdRequest 字段</caption>
+      <thead class="bcls-table__head">
+        <tr>
+          <th>欄位</th>
+          <th>類型</th>
+          <th>描述</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td><code translate="No">provider</code></td>
+          <td>串</td>
+          <td>廣告提供商類型。例如 vast3、vmap 等。</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="Creative_fields">創新領域</h3>
+    <p>包含有關來自廣告提供商的廣告創意的信息。</p>
+    <p>包括<a href="#Common_fields">公共領域</a> .</p>
+    <table class="bcls-table">
+      <caption class="bcls-caption--table">創新領域</caption>
+      <thead class="bcls-table__head">
+        <tr>
+          <th>欄位</th>
+          <th>類型</th>
+          <th>描述</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td><code translate="No">state</code></td>
+          <td>串</td>
+          <td>
+            請求時廣告素材的狀態。
+            <p>VOD 的值：</p>
+            <ul>
+              <li><code translate="no">active</code> - 創意活躍</li>
+              <li><code translate="no">missing_fk</code> - 廣告中沒有外鍵</li>
+              <li><code translate="no">missing_url</code> - 網址不在廣告中</li>
+              <li><code translate="no">internal_error</code> - 處理創意時出現內部錯誤</li>
+              <li><code translate="no">no_title_id</code> - 未能獲得廣告標題</li>
+              <li><code translate="no">title_metadata_error</code> - 處理廣告標題時出錯</li>
+              <li><code translate="no">rendition_mismatch</code> - 內容與廣告之間的比特率或縱橫比不匹配</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="No">fk</code></td>
+          <td>串</td>
+          <td>創意的外鍵。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">record_id</code></td>
+          <td>串</td>
+          <td>由 VOD 使用。</td>
+        </tr>
+        <tr>
+          <td><code translate="No">source_url</code></td>
+          <td>串</td>
+          <td>廣告素材的源網址。</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="Impression_fields">印象字段</h3>
+    <p>所有日誌類型共享這些字段。</p>
+    <p>包括<a href="#Common_fields">公共領域</a>和<a href="#HTTP_fields">HTTP 字段</a> .</p>
+    <table class="bcls-table">
+      <caption class="bcls-caption--table">印象字段</caption>
+      <thead class="bcls-table__head">
+        <tr>
+          <th>欄位</th>
+          <th>類型</th>
+          <th>描述</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td><code translate="No">impression_type</code></td>
+          <td>串</td>
+          <td>印象型。例如 AdStart、AdComplete 等。</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</article>
+<!-- <div class="col-sm-2 right-side-bar" style="display: inline-block;max-width: 20%;"> -->
+  
+  <nav class="right-side-nav" id="right_side_nav">
+    <h6 class="toc">頁面內容</h6>
+    <ul id="in_page_nav" class="list-none"></ul>
+  </nav>
+  
+<!-- </div> -->
+</div>
+</div>
+</div>
+<div class="page-content" style="background-color: rgb(1, 5, 14);">
+  <div class="container" style="width: 50%;">
+    <footer class="py-5">
+      <div class="row">
+        <div class="col-6 col-md">
+          <h5 class="h5-text">布萊特灣支援</h5>
+          <ul class="list-unstyled text-small" style="color: white ;">
+            <li><a class="a-text" href="https://status.brightcove.com">系統狀態</a></li>
+            <li><a class="a-text" href="https://supportportal.brightcove.com">聯絡支援</a></li>
+            <li><a class="a-text" href="https://support.brightcove.com/search.html">搜索所有文檔</a></li>
+          </ul>
+        </div>
+      
+        <div class="col-6 col-md">
+          <h5 class="h5-text">訓練</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="a-text" href="https://studio.support.brightcove.com/get-started/training/online-training-courses.html">在線課程</a></li>
+            <li><a class="a-text" href="https://studio.support.brightcove.com/get-started/training/register-training.html">註冊課程</a></li>
+            <li><a class="a-text" href="https://academy.brightcove.com/">光明灣學院</a></li>
+          </ul>
+        </div>
+      
+        <div class="col-6 col-md">
+          <h5 class="h5-text">Brightcove</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="a-text" href="https://www.brightcove.com">亮麗</a></li>
+            <li><a class="a-text" href="https://community.brightcove.com/s/">亮點社區論壇</a></li>
+            <li><a class="a-text" href="https://support.brightcove.com/product-updates.html">產品發布說明</a></li>
+            <li><a class="a-text" href="https://support.brightcove.com/doc-updates.html">文檔更新</a></li>
+          </ul>
+        </div>
+      </div>
+    
+      <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+      <p>© Brightcove Inc. 保留所有權利。</p>
+      <a class="a-text" href="https://www.brightcove.com/en/legal/privacy">隱私</a> <a class="a-text" href="https://www.brightcove.com/en/terms-and-conditions">條款 &amp; 狀況</a>
+
+      <ul class="list-unstyled d-flex">
+        <li class="ms-3"><a href="https://www.linkedin.com/company/16439" title="LinkedIn" target="_blank" class="gf-social-linkedin" style="margin-right: 1rem;"><i data-feather="linkedin" style="color:#8E9093;height: 1.25rem;"></i></a></li>
+
+        <li class="ms-3"><a href="https://twitter.com/brightcove" title="Twitter" target="_blank" class="gf-social-twitter" style="margin-right: 1rem;"><i data-feather="twitter" style="color:#8E9093;height: 1.25rem;"></i></a></li>
+
+        <li class="ms-3"><a href="https://www.facebook.com/Brightcove" title="Facebook" target="_blank" class="gf-social-facebook"><i data-feather="facebook" style="color:#8E9093;height: 1.25rem;"></i></a></li>
+      </ul>
+      </div>
+    </footer>
+  </div>
+</div>
+
+
+<script translate="no">
+  var searchBox = sajari.init({
+    mode: "search-box",
+    project: "1588255093746585379", // Set this to your project.
+    collection: "brightcove-documentation", // Set this to your collection.
+    instantPipeline: "autocomplete", // Pipeline used as you type
+    inputPlaceholder: "Search", // Input element placeholder,
+    styling: {
+      components: {
+        
+        input: {
+          container: {
+          backgroundColor: 'white',
+          }
+        
+        }
+      }
+    },
+    maxSuggestions: 5, // Maximum number of suggestions to show
+      attachSearchBox: document.getElementById("nav-search-box") // DOM element to attach to
+  });
+
+  
+
+
+    searchBox("sub", "pipeline.search-sent", function (_, query) {
+    window.location = "/search.html?q=" + encodeURIComponent(query.q);
+    });
+  
+  </script>
+  
+  <!-- Javascript -->          
+  <script src="/assets/s-site-assets-template-stylesheets/plugins/popper.min.js"></script>
+  <script src="/assets/s-site-assets-template-stylesheets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+
+
+  <!-- Page Specific JS -->
+  <script src="/assets/s-site-assets-template-stylesheets/plugins/smoothscroll.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script> -->
+  <!-- <script src="/assets/s-site-assets-template-stylesheets/js/highlight-custom.js"></script>  -->
+  <script src="/assets/s-site-assets-template-stylesheets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+  <script src="/assets/s-site-assets-template-stylesheets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+  <script src="/assets/s-site-assets-template-stylesheets/js/docs.js"></script> 
+
+  <!-- original footer components -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+  <script src="/assets/s-site-assets-scripts/https-fix.js"></script>
+  <script src="/assets/s-site-assets-scripts/setDate.js"></script>
+  <script src="/assets/s-site-assets-scripts/selector.js"></script>
+  
+  <script src="/assets/s-site-assets-scripts/prism.js"></script>
+  <script src="/assets/s-site-assets-scripts/prism-normalize.js"></script>
+  
+  <script src="/assets/s-site-assets-scripts/site.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/learning-paths/learning-paths.js"></script>
+  <!-- <script src="/assets/s-site-assets-scripts/site.js"></script> -->
+  <script src="/assets/s-site-assets-scripts/tabs.js"></script>
+  
+  <script src="/assets/s-site-assets-scripts/toc-new-template.js"></script>
+  
+  <script src="/assets/js/sites_nav.js"></script>
+  <script src="/assets/s-site-assets-scripts/bcls-utils.js"></script>
+  <script src="/assets/s-site-assets-scripts/local-link-fix.js"></script>
+  <script src="/assets/s-site-assets-scripts/sajari-reindex.js"></script>
+  <script src="/assets/js/feedback.js"></script>
+  
+  <script src="/assets/s-site-assets-scripts/sajari-search-foot.js"></script>
+  
+  <script translate="no">
+    feather.replace()
+  </script>
+  <!-- <script src="/assets/js/sajari-index.js"></script> -->
+  <script src="/assets/s-site-assets-scripts/in-app.js"></script>
+  <style translate="no">
+    a.sj-paginator__page-number.sj-paginator__page-number--current.css-so0ov7 {
+      background-color: lightblue;
+    }
+    div.sj-tabs__tab {
+      margin-top: 3rem;
+      margin-left: .3rem;
+      border-top-left-radius: .4rem;
+      border-top-right-radius: .4rem;
+      background-color:#e8e8e8;
+    }
+
+    div.sj-tabs__tab.sj-tabs__tab--selected {
+      border-bottom-color: crimson;
+      background-color: #f8f8f8;
+    }
+
+    p.sj-results__result__description.css-p9jvyt {
+      font-size: 1rem;
+    }
+
+    .sj-result__text.css-31l7gp h3 {
+      color: navy;
+      font-size: 1.4rem;
+    }
+    </style>
+
+  </body>
+</html> 
